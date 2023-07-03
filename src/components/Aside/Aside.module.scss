@@ -1,0 +1,16 @@
+.aside {
+	margin-top: 155px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky;
+	inset: 0 auto;
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		justify-content: center;
+		max-width: 185px;
+		width: 100%;
+	}
+}

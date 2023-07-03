@@ -1,0 +1,43 @@
+.tab {
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	gap: 16px;
+	cursor: pointer;
+	padding: 16px;
+	border-radius: 8px;
+	max-width: 100%;
+	align-items: center;
+	transition: all 0.4s;
+	&:hover {
+		transition: all 0.4s;
+		background-color: #bd68ca47;
+	}
+}
+.active {
+	background-color: #bd68ca;
+	transition: all 0.4s;
+	&:hover {
+		transition: all 0.4s;
+		background-color: #bd68ca;
+		.name {
+			color: #000;
+			transition: all 0.4s;
+		}
+		.aside__pic path {
+			transition: all 0.4s;
+			fill: #000;
+		}
+	}
+	.name {
+		color: #fff;
+		transition: all 0.4s;
+	}
+	.aside__pic path {
+		transition: all 0.4s;
+		fill: #fff;
+	}
+}
+.name {
+	font-size: 16px;
+	font-weight: 500;
+}

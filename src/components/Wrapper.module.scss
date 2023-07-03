@@ -1,0 +1,13 @@
+.container {
+	width: 100%;
+	max-width: 1440px;
+	margin-inline: auto;
+	padding: 0 15px;
+	display: grid;
+	grid-template-columns: 217px 1fr;
+	gap: 24px;
+	align-items: flex-start;
+}
+.wrapper {
+	margin-bottom: 150px;
+}

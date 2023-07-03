@@ -1,0 +1,115 @@
+.content-sales-table {
+	border-collapse: collapse;
+	text-align: left;
+	width: 100%;
+	max-width: 100%;
+	tr {
+		display: grid;
+		grid-template-columns: 48px 262px 209px 201px 204px 84px;
+		cursor: pointer;
+		transition: all 0.4s;
+		&:hover {
+			background-color: #f8f8fae3;
+		}
+		th {
+			line-height: 50px;
+			color: #737680;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: auto;
+			&:not(:first-child) {
+				padding: 8px;
+			}
+			&:nth-child(1) {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+		}
+		td {
+			color: #434652;
+			font-size: 14px;
+			line-height: 70px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			text-shadow: none;
+			&:nth-child(1) {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			&:last-child {
+				text-align: center;
+			}
+			&:not(:first-child) {
+				padding: 8px;
+			}
+		}
+	}
+	&__header {
+		border-top: 1px solid #ebecef;
+		border-bottom: 1px solid #ebecef;
+		background: #f8f8fa;
+	}
+	&__checkbox {
+		display: none;
+		&._active {
+			background-color: rgba(248, 248, 250, 0.8901960784);
+		}
+		&:checked {
+			& + label {
+				&::after {
+					opacity: 1;
+					transition: all 0.1s linear;
+				}
+				&::before {
+					background-color: #c06ecc;
+					border-color: #c06ecc;
+				}
+			}
+		}
+	}
+	&__label {
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 18px;
+		color: #c06ecc;
+		letter-spacing: 0.28px;
+		position: relative;
+		padding-left: 24px;
+		cursor: pointer;
+		&:before {
+			width: 16px;
+			height: 16px;
+			box-sizing: border-box;
+			border: 1px solid #d0d3da;
+			border-radius: 2px;
+			content: "";
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			border-radius: 3px;
+			background-color: #fff;
+		}
+		&:after {
+			width: 10px;
+			height: 10px;
+			box-sizing: border-box;
+			background-image: url(../../../img/check.svg);
+			background-size: contain;
+			content: "";
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			opacity: 0;
+			transition: all 0.1s linear;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+	&__body {
+	}
+}

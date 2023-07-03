@@ -1,0 +1,22 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	height: 100%;
+
+	&__body {
+		border-radius: 24px;
+		background: #fff;
+		box-shadow: -5px 1px 15px 0px rgba(0, 0, 0, 0.05);
+		height: 100%;
+	}
+	&__header {
+		align-self: flex-end;
+	}
+	&__body {
+		padding: 24px;
+	}
+	&__content {
+		height: auto;
+	}
+}

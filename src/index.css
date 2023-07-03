@@ -1,13 +1,131 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
+  background: #f8f8fa;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+	list-style: none;
+}
+
+button {
+  color: inherit;
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+.citites__content {
+  margin-top: 16px;
+}
+
+.input-block {
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.input-block__input {
+  border-radius: 8px;
+  border: 1px solid rgba(115, 118, 128, 0.2705882353);
+  background: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+}
+.input-block__button {
+  border-radius: 8px;
+  border: 1px solid #bd68ca;
+  background: #c06ecc;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.table-block {
+  font-size: 14px;
+  color: #737680;
+  font-weight: 500;
+}
+.table-block__wrapper {
+  width: 100%;
+}
+.table-block td {
+  padding: 10px 8px;
+}
+.table-block__header {
+  background-color: #f8f8fa;
+  border-top: 1px solid #ebecef;
+  border-bottom: 1px solid #ebecef;
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px;
+}
+.table-block__header th {
+  text-align: left;
+  padding: 10px 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 30px;
+}
+.table-block__header th:nth-child(2) {
+  grid-column: 2/-1;
+}
+.table-block__table tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px;
+}
+.table-block__item td {
+  line-height: 50px;
+}
+.table-block__recycle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.table-block .delete {
+  background-image: url("img/component.svg");
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+}
+
+.sales-selection__add-button {
+  width: 100%;
+  height: 40px;
+}
+.sales-selection__button {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid #bd68ca;
+  background: #c06ecc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
 }
