@@ -1,4 +1,4 @@
-import Aside from "../components/Aside/Aside";
+import Aside from "./_Aside/Aside";
 import MainContent from "./_MainContent/MainContent";
 import { BrowserRouter } from "react-router-dom";
 import style from "./Wrapper.module.scss";

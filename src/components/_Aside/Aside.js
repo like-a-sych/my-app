@@ -1,4 +1,4 @@
-import Nav from "../_Nav/Nav";
+import Nav from "./Nav/Nav";
 import style from "./Aside.module.scss";
 import { navList } from "../../constants/navigation";
 

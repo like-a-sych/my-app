@@ -8,7 +8,7 @@ import Orders from "../../tabpages/Orders";
 import Banners from "../Banners/Banners";
 import Seminars from "../../tabpages/Seminars";
 import Promocodes from "../../tabpages/Promocodes";
-import AdminButton from "../AdminButton";
+import AdminButton from "../_MainContent/AdminButton/AdminButton";
 import style from "./MainContent.module.scss";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
