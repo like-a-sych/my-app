@@ -3,6 +3,9 @@
 	text-align: left;
 	width: 100%;
 	max-width: 100%;
+	@media (max-width: 1485px) {
+		overflow-x: scroll;
+	}
 	tr {
 		display: grid;
 		grid-template-columns: 48px 262px 209px 201px 204px 84px;
@@ -12,6 +15,7 @@
 			background-color: #f8f8fae3;
 		}
 		th {
+			transition: all 0.4s;
 			line-height: 50px;
 			color: #737680;
 			font-size: 14px;
@@ -35,6 +39,7 @@
 			white-space: nowrap;
 			overflow: hidden;
 			text-shadow: none;
+			transition: all 0.4s;
 			&:nth-child(1) {
 				display: flex;
 				align-items: center;
@@ -46,6 +51,22 @@
 			}
 			&:not(:first-child) {
 				padding: 8px;
+			}
+		}
+		&._active {
+			& + div {
+				display: none;
+			}
+			td {
+				line-height: 2;
+				text-overflow: unset;
+				white-space: unset;
+				display: flex;
+				align-items: center;
+				min-height: 70px;
+				&:last-child {
+					justify-content: center;
+				}
 			}
 		}
 	}
@@ -80,6 +101,8 @@
 		letter-spacing: 0.28px;
 		position: relative;
 		padding-left: 24px;
+		width: 100%;
+		height: 100%;
 		cursor: pointer;
 		&:before {
 			width: 16px;
@@ -98,7 +121,7 @@
 			width: 10px;
 			height: 10px;
 			box-sizing: border-box;
-			background-image: url(../../../img/check.svg);
+			background-image: url(../../img/check.svg);
 			background-size: contain;
 			content: "";
 			position: absolute;

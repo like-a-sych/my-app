@@ -7,6 +7,7 @@ export default function Aside() {
     <aside className={style["aside"]}>
       <ul className={style["aside__list"]}>
         {navList.map((item) => (
+          //выводим весь список категорий aside
           <Nav
             key={item.name}
             picture={item.picture}

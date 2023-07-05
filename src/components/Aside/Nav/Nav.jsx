@@ -5,8 +5,9 @@ function Nav(props) {
   return (
     <li className={style["aside__link-item"]}>
       <NavLink
-        className={({ isActive }) =>
-          isActive ? `${style.tab} ${style.active}` : style.tab
+        className={
+          ({ isActive }) =>
+            isActive ? `${style.tab} ${style.active}` : style.tab //добавяем класс active(фича router Navlink)
         }
         to={props.href}
       >

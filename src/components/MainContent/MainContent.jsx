@@ -1,20 +1,18 @@
-import Products from "../Products/Products";
-import Users from "../../tabpages/Users";
-import Category from "../../tabpages/Category";
-import Cities from "../../tabpages/Cities";
-import Brands from "../../tabpages/Brands";
-import Protocols from "../Products/Products";
-import Orders from "../../tabpages/Orders";
-import Banners from "../Banners/Banners";
-import Seminars from "../../tabpages/Seminars";
-import Promocodes from "../../tabpages/Promocodes";
-import AdminButton from "../_MainContent/AdminButton/AdminButton";
+import Products from "./TabPages/Products/Products";
+import Users from "./TabPages/Users";
+import Category from "./TabPages/Category";
+import Cities from "./TabPages/Cities";
+import Brands from "./TabPages/Brands";
+import Protocols from "./TabPages/Protocols";
+import Orders from "./TabPages/Orders";
+import Banners from "./TabPages/Banners";
+import Seminars from "./TabPages/Seminars";
+import Promocodes from "./TabPages/Promocodes";
+import AdminButton from "./_AdminButton/AdminButton";
 import style from "./MainContent.module.scss";
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
 
 export default function MainContent() {
-  const [limitCellonPage, setlimitCellonPage] = useState(5);
 
   return (
     <main className={style.main}>
@@ -24,15 +22,7 @@ export default function MainContent() {
       <div className={style.main__body}>
         <div className={style["main__content"]}>
           <Routes>
-            <Route
-              path="/products"
-              element={
-                <Products
-                  limitCellonPage={limitCellonPage}
-                  setlimitCellonPage={setlimitCellonPage}
-                />
-              }
-            />
+            <Route path="/products" element={<Products />} />
             <Route path="/users" element={<Users />} />
             <Route path="/category" element={<Category />} />
             <Route path="/cities" element={<Cities />} />

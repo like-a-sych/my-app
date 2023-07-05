@@ -1,5 +1,5 @@
-import Aside from "./_Aside/Aside";
-import MainContent from "./_MainContent/MainContent";
+import Aside from "./Aside/Aside";
+import MainContent from "./MainContent/MainContent";
 import { BrowserRouter } from "react-router-dom";
 import style from "./Wrapper.module.scss";
 function Wrapper() {
@@ -8,7 +8,7 @@ function Wrapper() {
       <div className={style.container}>
         <BrowserRouter>
           <Aside />
-          <MainContent />
+          <MainContent  />
         </BrowserRouter>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { tableCellsArray } from "../../../constants/cells";
+import { tableCellsArray } from "../../constants/cells";
 import style from "./Pagination.module.scss";
 import SelectOptions from "./SelectOptions";
 
@@ -9,36 +8,39 @@ export default function Pagination({
   setlimitCellonPage,
   limitCellonPage,
 }) {
-  const visibleCount = [5, 10, 20, 40];
+  const visibleCount = [5, 10, 20, 40]; // лимит отображения контента на странице
 
   const lastPage = Math.floor(
     tableCellsArray.length / Number(limitCellonPage) + Number("1")
-  );
+  ); // переменная для вычисления последней странице на основе отображаемого контента на странице
 
   function setCountHandler(e) {
     if (tableCellsArray.length) {
-      setlimitCellonPage(e.target.value);
+      setlimitCellonPage(e.target.value); // задаем количество отображаемого контента на странице 
     } else {
       alert("Нечего выводить");
     }
   }
   function prevPageHandler() {
+    //при перелистывании назад отнимаем единицу от существующей страницы, если она не равна 1 и отнимаем от лимита отображаемого контента, заданное количество отображаемого контента
     if (pagination.page > 1) {
       setPagination({
         ...pagination,
         page: pagination.page - 1,
-        limit: Number(pagination.limit) - limitCellonPage,
+        limit: Number(pagination.limit) - Number(limitCellonPage),
       });
     }
   }
   function nextPageHandler() {
+    //при перелистывании вперед добавляем единицу к существующей странице, если она  равна 1, то не функция не срабатывает и прибавляем к лимиту отображаемого контента, заданное количество отображаемого контента
     if (
-      pagination.page <= Math.floor(tableCellsArray.length / limitCellonPage)
+      pagination.page <=
+      Math.floor(Number(tableCellsArray.length) / Number(limitCellonPage))
     ) {
       setPagination({
         ...pagination,
         page: pagination.page + 1,
-        limit: Number(pagination.limit) + limitCellonPage,
+        limit: Number(pagination.limit) + Number(limitCellonPage),
       });
     }
   }
