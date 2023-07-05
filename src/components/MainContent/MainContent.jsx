@@ -1,4 +1,4 @@
-import Products from "./TabPages/Products/Products";
+import Products from "./TabPages/Products";
 import Users from "./TabPages/Users";
 import Category from "./TabPages/Category";
 import Cities from "./TabPages/Cities";
@@ -7,7 +7,7 @@ import Protocols from "./TabPages/Protocols";
 import Orders from "./TabPages/Orders";
 import Banners from "./TabPages/Banners";
 import Seminars from "./TabPages/Seminars";
-import Promocodes from "./TabPages/Promocodes";
+import Promocodes from "./TabPages/Promocodes.jsx";
 import AdminButton from "./_AdminButton/AdminButton";
 import style from "./MainContent.module.scss";
 import { Route, Routes } from "react-router-dom";

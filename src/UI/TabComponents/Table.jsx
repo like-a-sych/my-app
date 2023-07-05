@@ -3,11 +3,15 @@ import Cell from "./Cell";
 import { MainContext } from "../../context/index";
 import { useContext } from "react";
 
-export default function Table({ showTableCell, isChecked, setChecked }) {
-	const {checkAllHandler} = useContext(MainContext)
+export default function Table({ showTableCell }) {
+	const {checkAllHandler, isChecked, setChecked, checkedItemsArray, limitCellonPage} = useContext(MainContext)
 
 	function allClick() { //функция для выделения всех checkbox в таблице
-			setChecked(!isChecked)
+			if (checkedItemsArray.length === limitCellonPage){
+				setChecked(false)
+			} else {
+				setChecked(!isChecked)
+			}
 			const newArr = showTableCell.map(item => item.id) // создаем новый массив в который помещаем все id полей отображаемой таблицы
 			checkAllHandler(newArr) //добавляем новый массив  обработчик проверки выделенных checkbox	
 	}

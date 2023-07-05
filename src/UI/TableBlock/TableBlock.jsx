@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { tableCellsArray } from "../../constants/cells";
 import AddItemButton from "../TabComponents/AddItemButton";
 import Pagination from "../TabComponents/Pagination";
@@ -7,23 +7,8 @@ import style from "./TableBlock.module.scss";
 import { MainContext } from "../../context";
 
 export default function TableBlock() {
-	const [isChecked, setChecked] = useState(false);
-	const {cellArray, setCellArray} = useContext(MainContext)
+	const {cellArray, setCellArray, setlimitCellonPage,	pagination,	setPagination, limitCellonPage, sliceArray, setChecked} = useContext(MainContext)
 	
-	const [limitCellonPage, setlimitCellonPage] = useState(5); //устанавливаем нижнее значение для отображени контента на странице
-  const [pagination, setPagination] = useState({
-    page: 1,
-    limit: limitCellonPage,
-  }); // устанавливаем пагинацию и лимит отображения контента таблицы
-
-  function sliceArray(table) {
-    // передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
-    return table.slice(
-      Number((pagination.page - 1) * limitCellonPage),
-      Number(pagination.limit)
-    );
-  }
-
   useEffect(() => {
     setCellArray(sliceArray(tableCellsArray)); //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице 
 		setChecked(false)
@@ -64,7 +49,7 @@ export default function TableBlock() {
         <AddItemButton />
       </div>
       <div className={style["table-block__content"]}>
-        <Table showTableCell={cellArray} limitCellonPage={limitCellonPage} sliceArray={sliceArray} isChecked={isChecked} setChecked={setChecked} />
+        <Table showTableCell={cellArray} />
       </div>
     </div>
   );

@@ -16,11 +16,15 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
 		setSelfChecked(checkId(checkedItemsArray, id)) // обновляет состояние чекбокса, когда в массив добавляется или убирается id поля
 	}, [checkedItemsArray, id])
 	
-  function clickBtn() {
-			console.log(`Клик по строке`)
-			
+  function clickBtn(e) {
+		// if (e.target.previousElementSibling.id) {
+		// 	console.log('checkbox')
+		// } else {
+		// 	console.log('td')
+		// }
+				console.log('td')
   }
-	function clickCheckbox() { 
+	function clickCheckbox(e) { 
 			setSelfChecked(!selfCheck);
 			checkboxHandler(id)
 			setChecked(false)
@@ -30,17 +34,20 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
     <Fragment>
       <tr className={selfCheck && style["_active"]} onClick={clickBtn}>
         <td>
+					<div className={style['content-sales-table__wrapper']} onClick={(e) => {e.stopPropagation()}}>
           <input
 						checked={selfCheck}
             type="checkbox"
             id={id}
             className={style["content-sales-table__checkbox"]}
 						onChange={clickCheckbox}
+						onClick={(e) => e.stopPropagation()}
           />
           <label
             className={style["content-sales-table__label"]}
             htmlFor={id}
           ></label>
+					</div>
         </td>
         <td>{category}</td>
         <td>{subcategory}</td>

@@ -16,6 +16,7 @@ export const navList = [
     ),
     name: "Продукты",
     href: "/products",
+    routeName: "{<Products/>}",
   },
   {
     picture: (
@@ -34,6 +35,7 @@ export const navList = [
     ),
     name: "Пользователи",
     href: "/users",
+    routeName: "{<Users/>}",
   },
   {
     picture: (
@@ -52,6 +54,7 @@ export const navList = [
     ),
     name: "Категории",
     href: "/category",
+    routeName: "{<Category/>}",
   },
   {
     picture: (
@@ -70,6 +73,7 @@ export const navList = [
     ),
     name: "Города",
     href: "/cities",
+    routeName: "{<Cities/>}",
   },
   {
     picture: (
@@ -88,6 +92,7 @@ export const navList = [
     ),
     name: "Бренды",
     href: "/brands",
+    routeName: "{<Brands/>}",
   },
   {
     picture: (
@@ -106,6 +111,7 @@ export const navList = [
     ),
     name: "Протоколы",
     href: "/protocols",
+    routeName: "{<Protocols/>}",
   },
   {
     picture: (
@@ -124,6 +130,7 @@ export const navList = [
     ),
     name: "Заказы",
     href: "/orders",
+    routeName: "{<Orders/>}",
   },
   {
     picture: (
@@ -142,6 +149,7 @@ export const navList = [
     ),
     name: "Баннеры",
     href: "/banners",
+    routeName: "{<Banners/>}",
   },
   {
     picture: (
@@ -160,6 +168,7 @@ export const navList = [
     ),
     name: "Семинары",
     href: "/seminars",
+    routeName: "{<Seminars/>}",
   },
   {
     picture: (
@@ -178,5 +187,6 @@ export const navList = [
     ),
     name: "Промокоды",
     href: "/promocodes",
+    routeName: "{<Promocodes/>}",
   },
 ];

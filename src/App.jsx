@@ -6,21 +6,35 @@ import { MainContext } from './context/index';
 import { tableCellsArray } from "./constants/cells";
 
 function App() {
-
+	const [isChecked, setChecked] = useState(false);
 	const [openModal, setOpenModal] = useState(false); // дефолтное состоние модального окна
 	const [checkedItemsArray, setCheckedItemsArray] = useState([]); // массив для хранения строк у которых checkbox=true
   const [cellArray, setCellArray] = useState(tableCellsArray); //передаем массив с данными для таблицы
+	const [limitCellonPage, setlimitCellonPage] = useState(5); //устанавливаем нижнее значение для отображени контента на странице
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: limitCellonPage,
+  }); // устанавливаем пагинацию и лимит отображения контента таблицы
+
+	function sliceArray(table) {
+    // передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
+    return table.slice(
+      Number((pagination.page - 1) * limitCellonPage),
+      Number(pagination.limit)
+    );
+  }
 
 	const deleteCellTable = () => {
-		
 			for (let i = 0; i<tableCellsArray.length; i++) {
 				if (checkedItemsArray.includes(tableCellsArray[i].id)) {
 					tableCellsArray.splice(i, 1);
 					i--;
 				}
 			}
-		 setCellArray(tableCellsArray)
-		 setOpenModal(false)
+			setCellArray(sliceArray(tableCellsArray));
+		 	setOpenModal(false)
+			setChecked(false)
+			setCheckedItemsArray([])
 	}
 
 	useEffect( () => {
@@ -52,7 +66,14 @@ function App() {
 																	checkAllHandler, 
 																	cellArray, 
 																	setCellArray,
-																	setCheckedItemsArray
+																	setCheckedItemsArray,
+																	setlimitCellonPage,
+																	pagination,
+																	setPagination,
+																	limitCellonPage,
+																	sliceArray,
+																	isChecked,
+																	setChecked
 																	}}>
 			<div id="root">
 				<Wrapper  />
