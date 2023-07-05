@@ -6,9 +6,9 @@ import { MainContext } from '../../context/index';
 
 const checkId = (arr, id) => arr.includes(id); //функция для проверки существования id поля в массиве
 
-export default function Cell({id,category,subcategory, brand, purchase, cashback}) {
+export default function Cell({id,category,subcategory, brand, purchase, cashback, setChecked}) {
  
-	const {checkedItemsArray, setOpenModal, checkboxHandler, } = useContext(MainContext) 
+	const {checkedItemsArray, checkboxHandler} = useContext(MainContext) 
 	const [selfCheck, setSelfChecked] = useState(checkId(checkedItemsArray, id)); //принимает в начальное состояние true или false, чтобы запоминать
 																																								// выбор элементов на которых стоит checkbox=true
 
@@ -23,11 +23,7 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
 	function clickCheckbox() { 
 			setSelfChecked(!selfCheck);
 			checkboxHandler(id)
-			// if (checkedItemsArray.length === 1 && selfCheck === true) {
-			// 		setOpenModal(false)
-			// } else {
-			// 	setOpenModal(true)
-			// }
+			setChecked(false)
 	}
 
   return (

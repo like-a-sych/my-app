@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { tableCellsArray } from "../../constants/cells";
 import AddItemButton from "../TabComponents/AddItemButton";
 import Pagination from "../TabComponents/Pagination";
 import Table from "../TabComponents/Table";
 import style from "./TableBlock.module.scss";
+import { MainContext } from "../../context";
 
 export default function TableBlock() {
+	const [isChecked, setChecked] = useState(false);
+	const {cellArray, setCellArray, checkedItemsArray} = useContext(MainContext)
 	const [limitCellonPage, setlimitCellonPage] = useState(5); //устанавливаем нижнее значение для отображени контента на странице
-  const [cellArray, setCellArray] = useState(tableCellsArray); //передаем массив с данными для таблицы
+
+
+	
+
+
   const [pagination, setPagination] = useState({
     page: 1,
     limit: limitCellonPage,
@@ -22,8 +29,8 @@ export default function TableBlock() {
   }
 
   useEffect(() => {
-    //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице
-    setCellArray(sliceArray(tableCellsArray));
+    setCellArray(sliceArray(tableCellsArray)); //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице 
+		setChecked(false)
   }, [pagination.page, pagination.limit]);
 
   useEffect(() => {
@@ -47,6 +54,8 @@ export default function TableBlock() {
     }
   }, [limitCellonPage]);
 
+
+
   return (
     <div className={style["table-block"]}>
       <div className={style["table-block__header"]}>
@@ -59,7 +68,7 @@ export default function TableBlock() {
         <AddItemButton />
       </div>
       <div className={style["table-block__content"]}>
-        <Table showTableCell={cellArray} limitCellonPage={limitCellonPage} sliceArray={sliceArray} />
+        <Table showTableCell={cellArray} limitCellonPage={limitCellonPage} sliceArray={sliceArray} isChecked={isChecked} setChecked={setChecked} />
       </div>
     </div>
   );

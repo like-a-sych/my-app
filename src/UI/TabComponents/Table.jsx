@@ -3,21 +3,24 @@ import Cell from "./Cell";
 import { MainContext } from "../../context/index";
 import { useContext } from "react";
 
-export default function Table({ showTableCell }) {
-	const {isChecked, checkAllHandler, setOpenModal, checkedItemsArray} = useContext(MainContext)
+export default function Table({ showTableCell, isChecked, setChecked }) {
+
+
+	const {checkAllHandler} = useContext(MainContext)
 
 	function allClick() { //функция для выделения всех checkbox в таблице
-		const newArr = showTableCell.map(item => item.id) // создаем новый массив в который помещаем все id полей отображаемой таблицы
-		checkAllHandler(newArr) //добавляем новый массив  обработчик проверки выделенных checkbox
+			setChecked(!isChecked)
+			const newArr = showTableCell.map(item => item.id) // создаем новый массив в который помещаем все id полей отображаемой таблицы
+			checkAllHandler(newArr) //добавляем новый массив  обработчик проверки выделенных checkbox	
 	}
-
+	
   return (
     <table className={style["content-sales-table"]}>
       <thead className={style["content-sales-table__header"]}>
         <tr>
           <th>
-            <input
-							ckecked={isChecked}
+            <input 
+							checked={isChecked}
               type="checkbox"
               id="checkAll"
               className={style["content-sales-table__checkbox"]}
@@ -46,6 +49,7 @@ export default function Table({ showTableCell }) {
             brand={item.brand}
             purchase={item.purchase}
             cashback={item.cashback}
+						setChecked={setChecked}
           />
         ))}
       </tbody>

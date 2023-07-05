@@ -3,11 +3,14 @@ import Wrapper from "./components/Wrapper";
 import Modal from "./UI/Modal/Modal";
 import style from './UI/Modal/Modal.module.scss'
 import { MainContext } from './context/index';
+import { tableCellsArray } from "./constants/cells";
 
 function App() {
 
 	const [openModal, setOpenModal] = useState(false); // дефолтное состоние модального окна
 	const [checkedItemsArray, setCheckedItemsArray] = useState([]); // массив для хранения строк у которых checkbox=true
+  const [cellArray, setCellArray] = useState(tableCellsArray); //передаем массив с данными для таблицы
+
 
 	useEffect( () => {
 		if (checkedItemsArray.length === 0) {
@@ -16,6 +19,10 @@ function App() {
 			setOpenModal(true)
 		}
 	}, [checkedItemsArray] )
+
+	function deleteCellTable(arr) {
+		
+	}
 
 	const checkAllHandler = (arr) => { //обработчик для установки checkbox всем или не выбранным отображаемым полям таблицы на странице
 		if (arr.length === checkedItemsArray.length) { // если массив выбранных полей таблицы равен выбранным полям по одному
@@ -32,7 +39,14 @@ function App() {
 	} 
 
   return (
-		<MainContext.Provider  value={{setOpenModal, checkedItemsArray, checkboxHandler, checkAllHandler}}>
+		<MainContext.Provider  value={{setOpenModal,
+																	checkedItemsArray,
+																	checkboxHandler, 
+																	checkAllHandler, 
+																	cellArray, 
+																	setCellArray,
+																	setCheckedItemsArray
+																	}}>
 			<div id="root">
 				<Wrapper  />
 				<Modal visible={openModal} setVisible={setOpenModal}>
@@ -40,7 +54,7 @@ function App() {
 						Количество выбранных позиций:
 						<span className={style.modal__count}>{checkedItemsArray.length}</span>
 					</p>
-					<button type="button" className={style.modal__button}>
+					<button onClick={deleteCellTable} type="button" className={style.modal__button}>
 						<svg
 							width="17"
 							height="16"
@@ -56,7 +70,7 @@ function App() {
 								/>
 							</g>
 						</svg>
-						<span> Удалить</span>
+						<span>Удалить</span>
 					</button>
 				</Modal>
 			</div>

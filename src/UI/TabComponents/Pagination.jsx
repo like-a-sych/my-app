@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { tableCellsArray } from "../../constants/cells";
 import style from "./Pagination.module.scss";
 import SelectOptions from "./SelectOptions";
+import { MainContext } from "../../context";
 
 export default function Pagination({
   pagination,
@@ -8,6 +10,8 @@ export default function Pagination({
   setlimitCellonPage,
   limitCellonPage,
 }) {
+
+	const {setCheckedItemsArray} = useContext(MainContext);
   const visibleCount = [5, 10, 20, 40]; // лимит отображения контента на странице
 
   const lastPage = Math.floor(
@@ -29,6 +33,7 @@ export default function Pagination({
         page: pagination.page - 1,
         limit: Number(pagination.limit) - Number(limitCellonPage),
       });
+			setCheckedItemsArray([]);
     }
   }
   function nextPageHandler() {
@@ -42,6 +47,7 @@ export default function Pagination({
         page: pagination.page + 1,
         limit: Number(pagination.limit) + Number(limitCellonPage),
       });
+			setCheckedItemsArray([])
     }
   }
   return (
