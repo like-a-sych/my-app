@@ -8,13 +8,9 @@ import { MainContext } from "../../context";
 
 export default function TableBlock() {
 	const [isChecked, setChecked] = useState(false);
-	const {cellArray, setCellArray, checkedItemsArray} = useContext(MainContext)
-	const [limitCellonPage, setlimitCellonPage] = useState(5); //устанавливаем нижнее значение для отображени контента на странице
-
-
+	const {cellArray, setCellArray} = useContext(MainContext)
 	
-
-
+	const [limitCellonPage, setlimitCellonPage] = useState(5); //устанавливаем нижнее значение для отображени контента на странице
   const [pagination, setPagination] = useState({
     page: 1,
     limit: limitCellonPage,

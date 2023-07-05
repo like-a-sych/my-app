@@ -4,8 +4,6 @@ import { MainContext } from "../../context/index";
 import { useContext } from "react";
 
 export default function Table({ showTableCell, isChecked, setChecked }) {
-
-
 	const {checkAllHandler} = useContext(MainContext)
 
 	function allClick() { //функция для выделения всех checkbox в таблице

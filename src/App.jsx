@@ -11,6 +11,17 @@ function App() {
 	const [checkedItemsArray, setCheckedItemsArray] = useState([]); // массив для хранения строк у которых checkbox=true
   const [cellArray, setCellArray] = useState(tableCellsArray); //передаем массив с данными для таблицы
 
+	const deleteCellTable = () => {
+		
+			for (let i = 0; i<tableCellsArray.length; i++) {
+				if (checkedItemsArray.includes(tableCellsArray[i].id)) {
+					tableCellsArray.splice(i, 1);
+					i--;
+				}
+			}
+		 setCellArray(tableCellsArray)
+		 setOpenModal(false)
+	}
 
 	useEffect( () => {
 		if (checkedItemsArray.length === 0) {
@@ -19,10 +30,6 @@ function App() {
 			setOpenModal(true)
 		}
 	}, [checkedItemsArray] )
-
-	function deleteCellTable(arr) {
-		
-	}
 
 	const checkAllHandler = (arr) => { //обработчик для установки checkbox всем или не выбранным отображаемым полям таблицы на странице
 		if (arr.length === checkedItemsArray.length) { // если массив выбранных полей таблицы равен выбранным полям по одному
