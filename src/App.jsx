@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "./components/Wrapper";
 import Modal from "./UI/Modal/Modal";
 import style from './UI/Modal/Modal.module.scss'
@@ -6,20 +6,33 @@ import { MainContext } from './context/index';
 
 function App() {
 
-	const [isAllChecked, setAllChecked] = useState(false);   //задаем дефолтное состояние для input[checkbox]
-	const [openModal, setOpenModal] = useState(false);
-	const [checkedItemsArray, setCheckedItemsArray] = useState([]);
+	const [openModal, setOpenModal] = useState(false); // дефолтное состоние модального окна
+	const [checkedItemsArray, setCheckedItemsArray] = useState([]); // массив для хранения строк у которых checkbox=true
 
-	const checkboxHandler = (id) => {
-		if (checkedItemsArray.includes(id)) {		
-				return setCheckedItemsArray(checkedItemsArray.filter(item => item !== id));	
+	useEffect( () => {
+		if (checkedItemsArray.length === 0) {
+			setOpenModal(false)
+		} else {
+			setOpenModal(true)
 		}
-		console.log(checkedItemsArray, id)	
-		setCheckedItemsArray([...checkedItemsArray, id])
+	}, [checkedItemsArray] )
+
+	const checkAllHandler = (arr) => { //обработчик для установки checkbox всем или не выбранным отображаемым полям таблицы на странице
+		if (arr.length === checkedItemsArray.length) { // если массив выбранных полей таблицы равен выбранным полям по одному
+			return setCheckedItemsArray([]); // то сбрасываем значение массива до пустого
+		}
+		setCheckedItemsArray(arr) //иначе добавляем оставшиеся поля таблицы в массив
+	}
+
+	const checkboxHandler = (id) => { //обработчик для добавление чекбокса одному полю отображаемой таблицы
+		if (checkedItemsArray.includes(id)) {		//если массив содержит id который в нем находится
+				return setCheckedItemsArray(checkedItemsArray.filter(item => item !== id));	//фильтруем массив и возвращаем новый без находящгося в нем id
+		}
+		setCheckedItemsArray([...checkedItemsArray, id]) //иначе если id в массиве нет, разворачиваем старый массив и добавляем туда новый id
 	} 
 
   return (
-		<MainContext.Provider  value={{isAllChecked, setAllChecked, setOpenModal, checkedItemsArray, checkboxHandler}}>
+		<MainContext.Provider  value={{setOpenModal, checkedItemsArray, checkboxHandler, checkAllHandler}}>
 			<div id="root">
 				<Wrapper  />
 				<Modal visible={openModal} setVisible={setOpenModal}>

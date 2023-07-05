@@ -1,31 +1,33 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import style from "./Table.module.scss";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { MainContext } from '../../context/index';
 
-const checkId = (arr, id) => arr.includes(id);
+const checkId = (arr, id) => arr.includes(id); //функция для проверки существования id поля в массиве
 
-export default function Cell({...props}) {
+export default function Cell({id,category,subcategory, brand, purchase, cashback}) {
  
-	const {checkedItemsArray, setOpenModal, checkboxHandler} = useContext(MainContext)
+	const {checkedItemsArray, setOpenModal, checkboxHandler, } = useContext(MainContext) 
+	const [selfCheck, setSelfChecked] = useState(checkId(checkedItemsArray, id)); //принимает в начальное состояние true или false, чтобы запоминать
+																																								// выбор элементов на которых стоит checkbox=true
 
-	const [selfCheck, setSelfChecked] = useState(checkId(checkedItemsArray, props.id));
-
-
+	useEffect(() => {
+		setSelfChecked(checkId(checkedItemsArray, id)) // обновляет состояние чекбокса, когда в массив добавляется или убирается id поля
+	}, [checkedItemsArray, id])
 	
   function clickBtn() {
 			console.log(`Клик по строке`)
 			
   }
-	function clickCheckbox() {
+	function clickCheckbox() { 
 			setSelfChecked(!selfCheck);
-			checkboxHandler(props.id)
-			if (checkedItemsArray.length === 1 && selfCheck === true) {
-					setOpenModal(false)
-			} else {
-				setOpenModal(true)
-			}
+			checkboxHandler(id)
+			// if (checkedItemsArray.length === 1 && selfCheck === true) {
+			// 		setOpenModal(false)
+			// } else {
+			// 	setOpenModal(true)
+			// }
 	}
 
   return (
@@ -35,24 +37,24 @@ export default function Cell({...props}) {
           <input
 						checked={selfCheck}
             type="checkbox"
-            id={props.id}
+            id={id}
             className={style["content-sales-table__checkbox"]}
 						onChange={clickCheckbox}
           />
           <label
             className={style["content-sales-table__label"]}
-            htmlFor={props.id}
+            htmlFor={id}
           ></label>
         </td>
-        <td>{props.category}</td>
-        <td>{props.subcategory}</td>
-        <td>{props.brand}</td>
-        <td data-tooltip-id={props.id} data-tooltip-content={props.purchase}>
-          {props.purchase}
+        <td>{category}</td>
+        <td>{subcategory}</td>
+        <td>{brand}</td>
+        <td data-tooltip-id={id} data-tooltip-content={purchase}>
+          {purchase}
         </td>
-        <td>{props.cashback}</td>
+        <td>{cashback}</td>
       </tr>
-      <Tooltip id={props.id} />
+      {/* <Tooltip id={id} /> */}
     </Fragment>
   );
 }
