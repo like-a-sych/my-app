@@ -3,7 +3,7 @@ import Cell from "./Cell";
 import { MainContext } from "../../context/index";
 import { useContext } from "react";
 import Modal from "../Modal/Modal";
-import AddModal from "../../components/MainContent/Modals/AddModal";
+import AddModal from "../../components/MainContent/Modals/AddSaleModal";
 
 export default function Table({ showTableCell }) {
 	const {checkAllHandler, isChecked, setChecked, checkedItemsArray, limitCellonPage, modalState, setModalState} = useContext(MainContext)

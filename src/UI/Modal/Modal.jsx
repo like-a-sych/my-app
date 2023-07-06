@@ -6,11 +6,12 @@ import { createPortal } from "react-dom";
 export default function Modal({children}) {
 
 	const {modalState, setModalState} = useContext(MainContext)
-
+	console.group(modalState)
 	function closeModal() {
 		setModalState({
 			...setModalState,
-			isOpen: setModalState.isOpen = false
+			isOpen: setModalState.isOpen = false,
+			idModal: ''
 		})
 	}
 
