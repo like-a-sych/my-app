@@ -1,12 +1,10 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import style from "./Table.module.scss";
-import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
 import { MainContext } from '../../context/index';
 
 const checkId = (arr, id) => arr.includes(id); //функция для проверки существования id поля в массиве
 
-export default function Cell({id,category,subcategory, brand, purchase, cashback, setChecked}) {
+export default function Cell({id,category,subcategory, brand, purchase, cashback, setChecked, setModalState}) {
  
 	const {checkedItemsArray, checkboxHandler} = useContext(MainContext) 
 	const [selfCheck, setSelfChecked] = useState(checkId(checkedItemsArray, id)); //принимает в начальное состояние true или false, чтобы запоминать
@@ -16,15 +14,13 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
 		setSelfChecked(checkId(checkedItemsArray, id)) // обновляет состояние чекбокса, когда в массив добавляется или убирается id поля
 	}, [checkedItemsArray, id])
 	
-  function clickBtn(e) {
-		// if (e.target.previousElementSibling.id) {
-		// 	console.log('checkbox')
-		// } else {
-		// 	console.log('td')
-		// }
-				console.log('td')
+  function clickBtn() {
+		setModalState((prev) => ({
+			...prev,
+			isOpen: true
+		}))
   }
-	function clickCheckbox(e) { 
+	function clickCheckbox() { 
 			setSelfChecked(!selfCheck);
 			checkboxHandler(id)
 			setChecked(false)
@@ -52,12 +48,11 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
         <td>{category}</td>
         <td>{subcategory}</td>
         <td>{brand}</td>
-        <td data-tooltip-id={id} data-tooltip-content={purchase}>
-          {purchase}
-        </td>
+        <td>{purchase}</td>
         <td>{cashback}</td>
       </tr>
-      {/* <Tooltip id={id} /> */}
+
     </Fragment>
+		
   );
 }
