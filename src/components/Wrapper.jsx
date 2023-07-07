@@ -1,7 +1,8 @@
+import { BrowserRouter } from "react-router-dom";
 import Aside from "./Aside/Aside";
 import MainContent from "./MainContent/MainContent";
-import { BrowserRouter } from "react-router-dom";
 import style from "./Wrapper.module.scss";
+
 function Wrapper() {
   return (
     <div className={style.wrapper}>

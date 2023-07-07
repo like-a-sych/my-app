@@ -1,10 +1,11 @@
 import { useContext, useEffect } from "react";
 import { tableCellsArray } from "../../constants/cells";
+import { MainContext } from "../../context";
 import AddItemButton from "../TabComponents/AddItemButton";
 import Pagination from "../TabComponents/Pagination";
 import Table from "../TabComponents/Table";
 import style from "./TableBlock.module.scss";
-import { MainContext } from "../../context";
+
 
 export default function TableBlock() {
 	const {cellArray, setCellArray, setlimitCellonPage,	pagination,	setPagination, limitCellonPage, sliceArray, setChecked} = useContext(MainContext)
@@ -18,8 +19,8 @@ export default function TableBlock() {
     // перерисовываем пагинацию, если меняеется лимит отображения контента на странице и если пагинация превышает лимит отображаемых страниц, то сбрасываем до 1
     if (
       pagination.page !==
-      Math.floor(
-        Number(tableCellsArray.length) / Number(limitCellonPage) + Number("1")
+      Math.ceil(
+        tableCellsArray.length / limitCellonPage
       )
     ) {
       setPagination({
@@ -34,8 +35,6 @@ export default function TableBlock() {
       });
     }
   }, [limitCellonPage]);
-
-
 
   return (
     <div className={style["table-block"]}>

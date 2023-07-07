@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { tableCellsArray } from "../../constants/cells";
-import style from "./Pagination.module.scss";
-import SelectOptions from "./SelectOptions";
 import { MainContext } from "../../context";
+import { tableCellsArray } from "../../constants/cells";
+import SelectOptions from "./SelectOptions";
+import style from "./Pagination.module.scss";
 
 export default function Pagination({
   pagination,

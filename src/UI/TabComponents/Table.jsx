@@ -1,12 +1,10 @@
-import style from "./Table.module.scss";
-import Cell from "./Cell";
-import { MainContext } from "../../context/index";
 import { useContext } from "react";
-import Modal from "../Modal/Modal";
-import AddModal from "../../components/MainContent/Modals/AddSaleModal";
+import { MainContext } from "../../context/index";
+import Cell from "./Cell";
+import style from "./Table.module.scss";
 
 export default function Table({ showTableCell }) {
-	const {checkAllHandler, isChecked, setChecked, checkedItemsArray, limitCellonPage, modalState, setModalState} = useContext(MainContext)
+	const {checkAllHandler, isChecked, setChecked, checkedItemsArray, limitCellonPage, setModalState} = useContext(MainContext)
 
 	function allClick() { //функция для выделения всех checkbox в таблице
 			if (checkedItemsArray.length === limitCellonPage){
@@ -17,12 +15,8 @@ export default function Table({ showTableCell }) {
 			const newArr = showTableCell.map(item => item.id) // создаем новый массив в который помещаем все id полей отображаемой таблицы
 			checkAllHandler(newArr) //добавляем новый массив  обработчик проверки выделенных checkbox	
 	}
-
-	
 	
   return (
-		<>
-		
     <table className={style["content-sales-table"]}>
       <thead className={style["content-sales-table__header"]}>
         <tr>
@@ -63,6 +57,5 @@ export default function Table({ showTableCell }) {
         ))}
       </tbody>
     </table>
-		</>
   );
 }

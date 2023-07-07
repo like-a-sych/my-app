@@ -17,24 +17,29 @@ export default function AddSaleModal() {
 					</div>
 				</div>
 			</div>
+			<hr></hr>
 			<div className={style.sales__body}>
 				<div className={style["sales-block"]}>
 					<ul className={style["sales-block__list"]}>		
 							<li className={style["sales-block__list-item"]}>
 								<label htmlFor="input-1"  className={style["sales-block__label"]}>Начисление кешбека с покупки</label>
-								<input id="input-1" className={style["sales-block__input"]} tyle='text' value={'20%'}></input>
+								<div className={style["sales-block__input-wrapper"]}><input disabled id="input-1" className={style["sales-block__input"]} tyle='text' value={'20%'}></input></div>
 							</li>
 							<li className={style["sales-block__list-item"]}>
-								<label htmlFor="input-1"  className={style["sales-block__label"]}>Категория</label>
-								<input id="input-1" className={style["sales-block__input"]} tyle='text' value={'Название категории'}></input>
+								<label htmlFor="input-2"  className={style["sales-block__label"]}>Категория</label>
+								<div className={style["sales-block__input-wrapper"]}><input disabled id="input-2" className={style["sales-block__input"]} tyle='text' value={'Название категории'}></input></div>
 							</li>
 							<li className={style["sales-block__list-item"]}>
-								<label htmlFor="input-1"  className={style["sales-block__label"]}>Подкатегория</label>
-								<input id="input-1" className={style["sales-block__input"]} tyle='text' value={'Название подкатегории'}></input>
+								<label htmlFor="input-3"  className={style["sales-block__label"]}>Подкатегория</label>
+								<div className={style["sales-block__input-wrapper"]}><input disabled id="input-3" className={style["sales-block__input"]} tyle='text' value={'Название подкатегории'}></input></div>
 							</li>
 							<li className={style["sales-block__list-item"]}>
-								<label htmlFor="input-1"  className={style["sales-block__label"]}>Бренд</label>
-								<input id="input-1" className={style["sales-block__input"]} tyle='text' value={'Имя бренда'}></input>
+								<label htmlFor="input-4"  className={style["sales-block__label"]}>Бренд</label>
+								<div className={style["sales-block__input-wrapper"]}><input disabled id="input-4" className={style["sales-block__input"]} tyle='text' value={'Имя бренда'}></input></div>
+							</li>
+							<li className={style["sales-block__list-item"]}>
+								<label htmlFor="input-5"  className={style["sales-block__label"]}>Товар</label>
+								<div className={style["sales-block__input-wrapper"]}><input disabled id="input-5" className={style["sales-block__input"]} tyle='text' value={'Название товара'}></input></div>
 							</li>
 					</ul>
 				</div>

@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import Products from "./TabPages/Products";
 import Users from "./TabPages/Users";
 import Category from "./TabPages/Category";
@@ -10,7 +11,6 @@ import Seminars from "./TabPages/Seminars";
 import Promocodes from "./TabPages/Promocodes.jsx";
 import AdminButton from "./_AdminButton/AdminButton";
 import style from "./MainContent.module.scss";
-import { Route, Routes } from "react-router-dom";
 
 export default function MainContent() {
 

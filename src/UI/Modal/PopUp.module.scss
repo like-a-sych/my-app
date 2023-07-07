@@ -64,5 +64,11 @@
 			border: 1px solid #00000061;
 			transition: all 0.3s;
 		}
+		&_wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: fit-content;
+		}
 	}
 }

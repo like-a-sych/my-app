@@ -1,25 +1,15 @@
-import style from "./AddItemButton.module.scss";
-import Modal from '../Modal/Modal';
-import AddSaleModal from '../../components/MainContent/Modals/AddSaleModal';
 import { useContext } from "react";
 import { MainContext } from "../../context";
+import style from "./AddItemButton.module.scss";
 
 export default function AddItem() {
 
-	const {modalState, setModalState} = useContext(MainContext)
+	const {setModalState} = useContext(MainContext)
 
   function addButton() {
-    setModalState((prev) => ({
-			...prev,
-			isOpen: true,
-			idModal: 'addSale',
-		}))
+    setModalState('addSale');
   }
   return (
-		<>
-		{(modalState.idModal === 'addSale') &&  <Modal modalState={modalState}>
-			<AddSaleModal/>
-		</Modal>}
     <div className={style["add-item"]}>
       <button
         onClick={addButton}
@@ -29,6 +19,6 @@ export default function AddItem() {
         Добавить акцию
       </button>
     </div>
-		</>
+		
   );
 }

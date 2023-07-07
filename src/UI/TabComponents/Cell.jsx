@@ -1,11 +1,11 @@
 import { Fragment, useContext, useEffect, useState } from "react";
-import style from "./Table.module.scss";
 import { MainContext } from '../../context/index';
+import style from "./Table.module.scss";
 
 const checkId = (arr, id) => arr.includes(id); //функция для проверки существования id поля в массиве
 
 export default function Cell({id,category,subcategory, brand, purchase, cashback, setChecked, setModalState}) {
- 
+	
 	const {checkedItemsArray, checkboxHandler} = useContext(MainContext) 
 	const [selfCheck, setSelfChecked] = useState(checkId(checkedItemsArray, id)); //принимает в начальное состояние true или false, чтобы запоминать
 																																								// выбор элементов на которых стоит checkbox=true
@@ -15,20 +15,17 @@ export default function Cell({id,category,subcategory, brand, purchase, cashback
 	}, [checkedItemsArray, id])
 	
   function clickBtn() {
-		setModalState((prev) => ({
-			...prev,
-			isOpen: true
-		}))
+		setModalState('testComponent');
   }
 	function clickCheckbox() { 
 			setSelfChecked(!selfCheck);
-			checkboxHandler(id)
-			setChecked(false)
+			checkboxHandler(id);
+			setChecked(false);
 	}
 
   return (
     <Fragment>
-      <tr className={selfCheck && style["_active"]} onClick={clickBtn}>
+      <tr className={selfCheck ? style["_active"] : undefined} onClick={clickBtn}>
         <td>
 					<div className={style['content-sales-table__wrapper']} onClick={(e) => {e.stopPropagation()}}>
           <input

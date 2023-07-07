@@ -1,6 +1,6 @@
+import { navList } from "../../constants/navigation";
 import Nav from "./Nav/Nav";
 import style from "./Aside.module.scss";
-import { navList } from "../../constants/navigation";
 
 export default function Aside() {
   return (
