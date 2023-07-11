@@ -1,44 +1,44 @@
 import { useContext, useEffect, useState } from "react";
 import { tableCellsArray } from "../../constants/cells";
 import { MainContext } from "../../context";
+import { visibleCells } from "../../constants/visibleCells";
 import AddItemButton from "../TabComponents/AddItemButton";
 import Pagination from "../TabComponents/Pagination";
 import Table from "../TabComponents/Table";
 import PopUp from "../Modal/PopUp";
 import style from "./TableBlock.module.scss";
+import stylePop from "../../UI/Modal/PopUp.module.scss";
 
 export default function TableBlock() {
-	const { setOpenPopup, openPopup, tableState, setTableState } =
-		useContext(MainContext);
+	const { setOpenPopup, openPopup } = useContext(MainContext);
+
 	const [pagination, setPagination] = useState({
+		//состояние для пагинации на странице
 		currentPage: 1,
-		limitView: 5,
-		step: 5,
+		limitView: visibleCells[0],
 	});
+	const [cellArray, setCellArray] = useState([]);
+	const [checkedItemsArray, setCheckedItemsArray] = useState([]);
+
+	function sliceArray(table) {
+		// передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
+		return table.slice(
+			Number((pagination.currentPage - 1) * pagination.limitView),
+			Number(pagination.limitView) * Number(pagination.currentPage)
+		);
+	}
+
 	function deleteCellTable() {
 		//функция для удаления выделенных чекбоксом полей и отрисовки нового массива
 		for (let i = 0; i < tableCellsArray.length; i++) {
-			if (tableState.checkedItemsArray.includes(tableCellsArray[i].id)) {
+			if (checkedItemsArray.includes(tableCellsArray[i].id)) {
 				tableCellsArray.splice(i, 1);
 				i--;
 			}
 		}
 		setOpenPopup(false);
-		setTableState(prev => ({
-			...prev,
-			checkedItemsArray: [],
-			cellArray: sliceArray(tableCellsArray),
-		}));
-	}
-	function sliceArray(table) {
-		console.log(
-			`${(pagination.currentPage - 1) * pagination.step} and ${pagination.step}`
-		);
-		// передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
-		return table.slice(
-			Number((pagination.currentPage - 1) * pagination.limitView),
-			Number(pagination.step)
-		);
+		setCheckedItemsArray([]);
+		setCellArray(sliceArray(tableCellsArray));
 	}
 
 	useEffect(() => {
@@ -58,12 +58,24 @@ export default function TableBlock() {
 				limitView: prev.limitView,
 			}));
 		}
+		setCellArray(sliceArray(tableCellsArray));
 	}, [pagination.limitView]);
+
+	useEffect(() => {
+		// стейт для вызова попапа, когда выделяешь чекбоксы таблицы
+		if (checkedItemsArray.length === 0) {
+			setOpenPopup(false);
+		} else {
+			setOpenPopup(true);
+		}
+	}, [checkedItemsArray]);
 
 	return (
 		<div className={style["table-block"]}>
 			<div className={style["table-block__header"]}>
 				<Pagination
+					setCellArray={setCellArray}
+					setCheckedItemsArray={setCheckedItemsArray}
 					pagination={pagination}
 					setPagination={setPagination}
 					sliceArray={sliceArray}
@@ -71,21 +83,25 @@ export default function TableBlock() {
 				<AddItemButton />
 			</div>
 			<div className={style["table-block__content"]}>
-				<Table />
+				<Table
+					cellArray={cellArray}
+					checkedItemsArray={checkedItemsArray}
+					setCheckedItemsArray={setCheckedItemsArray}
+				/>
 				{openPopup && (
 					<PopUp openPopup={openPopup} setOpenPopup={setOpenPopup}>
-						<p className={style.popup__info}>
+						<p className={stylePop.popup__info}>
 							Количество выбранных позиций:
-							<span className={style.popup__count}>
+							<span className={stylePop.popup__count}>
 								{" "}
-								{tableState.checkedItemsArray.length}
+								{checkedItemsArray.length}
 							</span>
 						</p>
-						<div className={style.popup__button_wrapper}>
+						<div className={stylePop.popup__button_wrapper}>
 							<button
 								onClick={deleteCellTable}
 								type="button"
-								className={style.popup__button}
+								className={stylePop.popup__button}
 							>
 								<svg
 									width="17"

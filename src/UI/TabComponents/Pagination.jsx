@@ -1,47 +1,39 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { tableCellsArray } from "../../constants/cells";
-import { MainContext } from "../../context";
 import SelectOptions from "./SelectOptions";
 import style from "./Pagination.module.scss";
+import { visibleCells } from "../../constants/visibleCells";
 
-export default function Pagination({ pagination, setPagination, sliceArray }) {
-	const { setTableState, tableState } = useContext(MainContext);
-	const visibleCount = [5, 10, 20, 40]; // лимит отображения контента на странице
-
+export default function Pagination({
+	pagination,
+	setPagination,
+	sliceArray,
+	setCheckedItemsArray,
+	setCellArray,
+}) {
 	const lastPage = Math.ceil(tableCellsArray.length / +pagination.limitView); // переменная для вычисления последней странице на основе отображаемого контента на странице
-	console.log(pagination, pagination.limitView, pagination.step);
-	useEffect(() => {
-		setTableState(prev => ({
-			...prev,
-			cellArray: sliceArray(tableCellsArray), //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице
-		}));
-		return () =>
-			setTableState(prev => ({
-				...prev,
-				checkedItemsArray: [],
-			}));
-	}, [pagination.currentPage, pagination.limitView]);
 
 	function setCountHandler(e) {
 		if (tableCellsArray.length) {
 			setPagination(prev => ({
 				...prev,
-				step: e.target.value,
+				limitView: e.target.value,
 			})); // задаем количество отображаемого контента на странице
 		} else {
 			alert("Нечего выводить");
 		}
 	}
+
 	function prevPageHandler() {
 		//при перелистывании назад отнимаем единицу от существующей страницы, если она не равна 1 и отнимаем от лимита отображаемого контента, заданное количество отображаемого контента
 		if (pagination.currentPage > 1) {
 			setPagination(prev => ({
 				...prev,
 				currentPage: prev.currentPage - 1,
-				step: Number(prev.limitView) - Number(prev.step),
 			}));
 		}
 	}
+
 	function nextPageHandler() {
 		//при перелистывании вперед добавляем единицу к существующей странице, если она  равна 1, то функция не срабатывает и прибавляем к лимиту отображаемого контента, заданное количество отображаемого контента
 		if (
@@ -51,10 +43,15 @@ export default function Pagination({ pagination, setPagination, sliceArray }) {
 			setPagination(prev => ({
 				...prev,
 				currentPage: prev.currentPage + 1,
-				step: Number(prev.limitView) + Number(prev.step),
 			}));
 		}
 	}
+
+	useEffect(() => {
+		setCellArray(sliceArray(tableCellsArray)); //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице
+		return () => setCheckedItemsArray([]);
+	}, [pagination.currentPage, pagination.limitView]);
+
 	return (
 		<div className={style["pagination"]}>
 			<div className={style["pagination__wrapper"]}>
@@ -64,7 +61,7 @@ export default function Pagination({ pagination, setPagination, sliceArray }) {
 						className={style["pagination__show"]}
 						onChange={setCountHandler}
 					>
-						{visibleCount.map(item => (
+						{visibleCells.map(item => (
 							<SelectOptions key={item} value={item} />
 						))}
 					</select>

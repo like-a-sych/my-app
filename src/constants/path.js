@@ -1,0 +1,12 @@
+export const pathNames = {
+	products: "/products",
+	users: "/users",
+	cities: "/cities",
+	category: "/category",
+	brands: "/brands",
+	protocols: "/protocols",
+	orders: "/orders",
+	banners: "/banners",
+	seminars: "/seminars",
+	promocodes: "/promocodes",
+};
