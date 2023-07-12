@@ -4,6 +4,7 @@ import style from "./Table.module.scss";
 
 function Cell({ item, setModalState, checkboxHandler, isChecked }) {
 	const { id, cashback, purchase, category, subcategory, brand } = item;
+
 	function clickBtn() {
 		setModalState("testComponent");
 	}

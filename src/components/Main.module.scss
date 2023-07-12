@@ -3,11 +3,123 @@
 	max-width: 1440px;
 	margin-inline: auto;
 	padding: 0 15px;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+.wrapper {
+	margin-bottom: 150px;
+	overflow: hidden;
+}
+.main {
 	display: grid;
 	grid-template-columns: 217px 1fr;
 	gap: 24px;
 	align-items: flex-start;
+	@media (max-width: 1030px) {
+		grid-template-columns: 1fr;
+	}
 }
-.wrapper {
-	margin-bottom: 150px;
+.header {
+}
+.cursor {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	margin: 20px 0;
+	@media (max-width: 1030px) {
+		display: flex;
+	}
+}
+
+.tooltip-horizontal-scroll-icon_hand {
+	-webkit-animation: tooltip-horizontal-scroll-icon_anim-scroll-hand 2s infinite;
+	animation: tooltip-horizontal-scroll-icon_anim-scroll-hand 2s infinite;
+}
+
+.tooltip-horizontal-scroll-icon_card {
+	-webkit-animation: tooltip-horizontal-scroll-icon_anim-scroll-card 2s infinite;
+	animation: tooltip-horizontal-scroll-icon_anim-scroll-card 2s infinite;
+}
+
+@-webkit-keyframes tooltip-horizontal-scroll-icon_anim-scroll-hand {
+	0% {
+		-webkit-transform: translateX(80px) scale(1);
+		transform: translateX(80px) scale(1);
+		opacity: 0;
+	}
+	10% {
+		-webkit-transform: translateX(80px) scale(1);
+		transform: translateX(80px) scale(1);
+		opacity: 1;
+	}
+	20%,
+	60% {
+		-webkit-transform: translateX(175px) scale(0.6);
+		transform: translateX(175px) scale(0.6);
+		opacity: 1;
+	}
+	80% {
+		-webkit-transform: translateX(5px) scale(0.6);
+		transform: translateX(5px) scale(0.6);
+		opacity: 1;
+	}
+	to {
+		-webkit-transform: translateX(5px) scale(0.6);
+		transform: translateX(5px) scale(0.6);
+		opacity: 0;
+	}
+}
+
+@keyframes tooltip-horizontal-scroll-icon_anim-scroll-hand {
+	0% {
+		-webkit-transform: translateX(80px) scale(1);
+		transform: translateX(80px) scale(1);
+		opacity: 0;
+	}
+	10% {
+		-webkit-transform: translateX(80px) scale(1);
+		transform: translateX(80px) scale(1);
+		opacity: 1;
+	}
+	20%,
+	60% {
+		-webkit-transform: translateX(175px) scale(0.6);
+		transform: translateX(175px) scale(0.6);
+		opacity: 1;
+	}
+	80% {
+		-webkit-transform: translateX(5px) scale(0.6);
+		transform: translateX(5px) scale(0.6);
+		opacity: 1;
+	}
+	to {
+		-webkit-transform: translateX(5px) scale(0.6);
+		transform: translateX(5px) scale(0.6);
+		opacity: 0;
+	}
+}
+@-webkit-keyframes tooltip-horizontal-scroll-icon_anim-scroll-card {
+	0%,
+	60% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	80%,
+	to {
+		-webkit-transform: translateX(-240px);
+		transform: translateX(-240px);
+	}
+}
+@keyframes tooltip-horizontal-scroll-icon_anim-scroll-card {
+	0%,
+	60% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	80%,
+	to {
+		-webkit-transform: translateX(-240px);
+		transform: translateX(-240px);
+	}
 }

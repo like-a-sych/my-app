@@ -1,15 +1,12 @@
 import { useEffect } from "react";
-import { tableCellsArray } from "../../constants/cells";
-import SelectOptions from "./SelectOptions";
-import style from "./Pagination.module.scss";
-import { visibleCells } from "../../constants/visibleCells";
+import { tableCellsArray } from "../constants/cells";
 
-export default function Pagination({
+export function usePagination({
 	pagination,
 	setPagination,
 	sliceArray,
-	setCheckedItemsArray,
 	setCellArray,
+	setCheckedItemsArray,
 }) {
 	const lastPage = Math.ceil(tableCellsArray.length / +pagination.limitView); // переменная для вычисления последней странице на основе отображаемого контента на странице
 
@@ -52,41 +49,10 @@ export default function Pagination({
 		return () => setCheckedItemsArray([]);
 	}, [pagination.currentPage, pagination.limitView]);
 
-	return (
-		<div className={style["pagination"]}>
-			<div className={style["pagination__wrapper"]}>
-				<div className={style["pagination__showing"]}>
-					<p>Показывать</p>
-					<select
-						className={style["pagination__show"]}
-						onChange={setCountHandler}
-					>
-						{visibleCells.map(item => (
-							<SelectOptions key={item} value={item} />
-						))}
-					</select>
-				</div>
-				<div className={style["pagination__pages"]}>
-					<p>Страница</p>
-					<div className={style["pagination__page"]}>
-						<span className={style["pagination__page_active"]}>
-							{pagination.currentPage}
-						</span>
-						из
-						<span className={style["pagination__page_all"]}>{lastPage}</span>
-					</div>
-				</div>
-				<div className={style["pagination__arrows"]}>
-					<div
-						className={style["pagination__prev"]}
-						onClick={prevPageHandler}
-					></div>
-					<div
-						className={style["pagination__next"]}
-						onClick={nextPageHandler}
-					></div>
-				</div>
-			</div>
-		</div>
-	);
+	return {
+		setCountHandler,
+		lastPage,
+		prevPageHandler,
+		nextPageHandler,
+	};
 }

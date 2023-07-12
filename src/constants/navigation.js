@@ -1,5 +1,7 @@
 import { pathNames } from "./path";
 
+export const nav = [];
+
 export const navList = [
 	{
 		picture: (

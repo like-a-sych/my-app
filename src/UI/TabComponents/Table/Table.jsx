@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MainContext } from "../../context/index";
+import { MainContext } from "../../../context/index";
 import Cell from "./Cell";
 import style from "./Table.module.scss";
 
