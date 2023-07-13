@@ -1,0 +1,152 @@
+.mainForm {
+	height: 100vh;
+	width: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&__container {
+		border-radius: 8px;
+		background: #fff;
+		box-shadow:
+			0px 0px 1px 0px rgba(76, 93, 112, 0.3),
+			0px 4px 8px 0px rgba(76, 93, 112, 0.3);
+		padding: 24px;
+		min-width: 80%;
+		@media (min-width: 550px) {
+			min-width: 514px;
+		}
+	}
+	&__header {
+		margin-bottom: 1.5em;
+	}
+	&__title {
+		font-size: 24px;
+		font-weight: 500;
+		text-align: left;
+	}
+	&__body {
+	}
+	&__form {
+	}
+	&__form-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+	&__form-item {
+		display: flex;
+		flex-direction: column;
+	}
+	&__label {
+		margin-bottom: 4px;
+		font-size: 14px;
+	}
+	&__input {
+		border-radius: 8px;
+		border: 1px solid #d0d3da;
+		background: #fff;
+		width: auto;
+		height: 20px;
+		padding: 10px;
+		&:focus {
+			outline-color: #c06ecc;
+		}
+
+		&::placeholder {
+			color: #737680;
+		}
+	}
+	&__buttons-wrapper {
+		margin-top: 1.5em;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	&__button {
+		height: 40px;
+	}
+	&__submit {
+		background-color: #c06ecc;
+		color: #fff;
+		border-radius: 8px;
+		transition: all 0.4s;
+		&:hover {
+			transition: all 0.4s;
+			background-color: #c58ece;
+		}
+	}
+	&__register {
+		transition: all 0.4s;
+		&:hover {
+			transition: all 0.4s;
+			color: #c06ecc;
+		}
+	}
+	input[type="password"] {
+		position: relative;
+		padding-right: 40px;
+		&::before {
+			content: "";
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background: no-repeat center/contain url("../../../../UI/img/eye.svg");
+			right: 0;
+			margin: auto;
+		}
+	}
+	&__error {
+		display: flex;
+		font-size: 13px;
+		color: red;
+		justify-content: center;
+		font-weight: 500;
+	}
+}
+.formCheck {
+	margin-top: 12px;
+	&__label {
+		font-size: 16px;
+		font-weight: 500;
+		position: relative;
+		padding-left: 28px;
+		cursor: pointer;
+		&:before {
+			width: 16px;
+			height: 16px;
+			box-sizing: border-box;
+			border: 1px solid #ddd;
+			border-radius: 2px;
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0px;
+			border-radius: 3px;
+		}
+		&:after {
+			width: 10px;
+			height: 10px;
+			box-sizing: border-box;
+			background-image: url(../../../../UI/img/checkV.svg);
+			background-size: contain;
+			content: "";
+			position: absolute;
+			left: 3px;
+			top: 3px;
+			opacity: 0;
+			transition: all 0.1s linear;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+	&__input {
+		appearance: none;
+		&:checked + label:after {
+			opacity: 1;
+			transition: all 0.1s linear;
+		}
+	}
+}

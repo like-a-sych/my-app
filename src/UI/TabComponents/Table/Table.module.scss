@@ -17,9 +17,6 @@
 		@media (max-width: 1485px) {
 			grid-template-columns: 40px 1fr 1fr 1fr 1fr 80px;
 			justify-content: flex-start;
-			&:first-child {
-				grid-row: 40px;
-			}
 		}
 		th {
 			transition: all 0.4s;
@@ -135,7 +132,7 @@
 			width: 10px;
 			height: 10px;
 			box-sizing: border-box;
-			background-image: url(../../../img/check.svg);
+			background-image: url(../../img/check.svg);
 			background-size: contain;
 			content: "";
 			position: absolute;

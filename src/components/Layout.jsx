@@ -1,14 +1,20 @@
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
+import { MainContext } from "../context";
 import Aside from "./Aside/Aside";
 import AdminButton from "./MainContent/_AdminButton";
-import style from "./Main.module.scss";
-import styles from "./MainContent/Router.module.scss";
 
-function Main() {
+import style from "./Layout.module.scss";
+
+function Layout() {
+	const { handleLogout } = useContext(MainContext);
 	return (
 		<div className={style.wrapper}>
 			<div className={style.container}>
 				<header className={style.header}>
+					<button onClick={handleLogout} className={style.header__logout}>
+						выйти
+					</button>
 					<AdminButton />
 				</header>
 				<div className={style.cursor}>
@@ -51,9 +57,9 @@ function Main() {
 				</div>
 				<div className={style.main}>
 					<Aside />
-					<main className={styles.main}>
-						<div className={styles.main__body}>
-							<div className={styles["main__content"]}>
+					<main className={style.mainInner}>
+						<div className={style.mainInner__body}>
+							<div className={style["mainInner__content"]}>
 								<Outlet />
 							</div>
 						</div>
@@ -64,4 +70,4 @@ function Main() {
 	);
 }
 
-export default Main;
+export default Layout;
