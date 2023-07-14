@@ -3,8 +3,14 @@ import { MainContext } from "../../../../context";
 import style from "./Login.module.scss";
 
 export default function Login() {
-	const { handlerSubmitForm, errorMessage, handlerRegister, registerFields } =
-		useContext(MainContext);
+	const {
+		handlerSubmitForm,
+		errorMessage,
+		handlerRegister,
+		registerFields,
+		showPassword,
+		fieldType,
+	} = useContext(MainContext);
 
 	return (
 		<div className={style.mainForm}>
@@ -34,11 +40,38 @@ export default function Login() {
 								<input
 									id="password"
 									className={style.mainForm__input}
-									type="password"
+									type={fieldType}
 									placeholder="Введите пароль"
 									aria-label="password field"
 								/>
+								<button
+									type="button"
+									onClick={showPassword}
+									className={style.mainForm__show}
+								></button>
 							</div>
+							{!registerFields.fieldsVisible && (
+								<div className={style["mainForm__form-item"]}>
+									<label
+										htmlFor="passwordRepeat"
+										className={style.mainForm__label}
+									>
+										Повторите пароль
+									</label>
+									<input
+										id="passwordRepeat"
+										className={style.mainForm__input}
+										type={fieldType}
+										placeholder="Повторите пароль"
+										aria-label="password field"
+									/>
+									<button
+										type="button"
+										onClick={showPassword}
+										className={style.mainForm__show}
+									></button>
+								</div>
+							)}
 						</div>
 						{registerFields.fieldsVisible && (
 							<div className={style.formCheck}>
@@ -63,18 +96,16 @@ export default function Login() {
 									{registerFields.textButton}
 								</button>
 							</div>
-							{registerFields.fieldsVisible && (
-								<div className={style.mainForm__button}>
-									<button
-										onClick={handlerRegister}
-										type="button"
-										aria-label="register"
-										className={style.mainForm__register}
-									>
-										У меня еще нет аккаунта
-									</button>
-								</div>
-							)}
+							<div className={style.mainForm__button}>
+								<button
+									onClick={handlerRegister}
+									type="button"
+									aria-label="register"
+									className={style.mainForm__register}
+								>
+									{registerFields.registerText}
+								</button>
+							</div>
 						</div>
 					</form>
 				</div>
