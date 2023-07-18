@@ -9,4 +9,7 @@ export const pathNames = {
 	banners: "banners",
 	seminars: "seminars",
 	promocodes: "promocodes",
+	auth: "/auth",
+	login: "/auth/login",
+	register: "/auth/register",
 };

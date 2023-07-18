@@ -12,8 +12,7 @@ function App() {
 		handlerSubmitForm,
 		isAuth,
 		errorMessage,
-		handlerRegister,
-		registerFields,
+		setRegistration,
 	} = useAuth();
 	return (
 		<MainContext.Provider
@@ -24,8 +23,7 @@ function App() {
 				handlerSubmitForm,
 				isAuth,
 				errorMessage,
-				handlerRegister,
-				registerFields,
+				setRegistration,
 			}}
 		>
 			<BrowserRouter>

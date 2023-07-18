@@ -3,57 +3,19 @@ import { useEffect, useState } from "react";
 export function useAuth() {
 	const [isAuth, setAuth] = useState(true);
 	const [errorMessage, setErrorMessage] = useState("");
-	const [fieldType, setFieldType] = useState("password");
 	const registerUsers = JSON.parse(
 		localStorage.getItem("mockUsers") ??
 			'[{"login":"admin@admin","password":"admin"}]'
 	);
-	const [registerFields, setRegisterFields] = useState({
-		fieldsVisible: true,
-		textButton: "Войти",
-		registerText: "У меня еще нет аккаунта",
-		title: "Вход в учётную запись",
-	});
 
-	function showPassword() {
-		if (fieldType === "password") {
-			setFieldType("text");
-		} else {
-			setFieldType("password");
-		}
-	}
+	const [registration, setRegistration] = useState(false);
 
-	function handlerRegister(event) {
-		switch (registerFields.fieldsVisible) {
-			case true:
-				event.preventDefault();
-				setErrorMessage("");
-				setRegisterFields({
-					title: "Создание учетной записи",
-					textButton: "Регистрация",
-					registerText: "У меня уже есть аккаунт",
-					fieldsVisible: false,
-				});
-				break;
-			case false:
-				event.preventDefault();
-				setErrorMessage("");
-				setRegisterFields({
-					title: "Вход в учётную запись",
-					textButton: "Войти",
-					registerText: "У меня еще нет аккаунта",
-					fieldsVisible: true,
-				});
-				break;
-			default:
-				console.log("не отрабатывает");
-		}
-	}
+	console.log(registration);
 
 	function handlerSubmitForm(event) {
 		event.preventDefault();
-		switch (registerFields.fieldsVisible) {
-			case true:
+		switch (registration) {
+			case false:
 				for (let i = 0; registerUsers.length > i; i++) {
 					if (
 						registerUsers[i].login === event.target.email.value &&
@@ -67,7 +29,7 @@ export function useAuth() {
 				event.target.reset();
 				setErrorMessage("Неверные учетные данные");
 				break;
-			case false:
+			case true:
 				for (let i = 0; registerUsers.length > i; i++) {
 					if (registerUsers[i].login === event.target.email.value) {
 						event.target.reset();
@@ -86,11 +48,7 @@ export function useAuth() {
 						])
 					);
 					event.target.reset();
-					setRegisterFields({
-						textButton: "Войти",
-						title: "Вход в учётную запись",
-						fieldsVisible: true,
-					});
+					setRegistration(false);
 					setErrorMessage("");
 				} else {
 					setErrorMessage("Поля не должны быть пустыми");
@@ -105,14 +63,14 @@ export function useAuth() {
 		setErrorMessage("");
 		localStorage.removeItem("isAuth");
 		setAuth(false);
-		registerFields.fieldsVisible = true;
+		setRegistration(false);
 	}
 
 	useEffect(() => {
 		if (localStorage.getItem("isAuth") === null) {
 			setAuth(false);
 		}
-	}, [isAuth, registerFields]);
+	}, [isAuth, registration, registerUsers]);
 
 	return {
 		setAuth,
@@ -120,9 +78,7 @@ export function useAuth() {
 		handleLogout,
 		handlerSubmitForm,
 		errorMessage,
-		registerFields,
-		handlerRegister,
-		showPassword,
-		fieldType,
+		setRegistration,
+		registration,
 	};
 }

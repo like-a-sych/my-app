@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { pathNames } from "../../constants/path";
 
 import ProtectedRoutes from "../ProtectedRoutes";
+import LoginFormLayout from "../Public/LoginFormLayout";
 import Layout from "../Layout";
-import Login from "./Public/Login/Login";
 import Products from "./TabPages/Products";
 import Users from "./TabPages/Users";
 import Category from "./TabPages/Category";
@@ -18,9 +18,10 @@ import Promocodes from "./TabPages/Promocodes";
 export default function Router() {
 	return (
 		<Routes>
-			<Route path="/auth" element={<Login />}>
-				<Route path="/auth/login" element={<Login />} />
-				<Route path="/auth/register" element={<Login />} />
+			<Route path={pathNames.auth}>
+				<Route index element={<LoginFormLayout />} />
+				<Route path={pathNames.login} element={<LoginFormLayout />} />
+				<Route path={pathNames.register} element={<LoginFormLayout />} />
 			</Route>
 			<Route element={<ProtectedRoutes />}>
 				<Route path="/" element={<Layout />}>
