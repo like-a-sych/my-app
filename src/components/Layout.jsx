@@ -1,13 +1,10 @@
-import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { MainContext } from "../context";
 import Aside from "./Aside/Aside";
 import AdminButton from "./MainContent/_AdminButton";
 
 import style from "./Layout.module.scss";
 
-function Layout() {
-	const { handleLogout } = useContext(MainContext);
+function Layout({ handleLogout }) {
 	return (
 		<div className={style.wrapper}>
 			<div className={style.container}>

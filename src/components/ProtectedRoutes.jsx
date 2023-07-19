@@ -1,10 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { pathNames } from "../constants/path";
 
-export default function ProtectedRoutes({ authData }) {
+export default function ProtectedRoutes({ isAuth }) {
 	const location = useLocation();
-	console.log(authData.isAuth);
-	if (!authData.isAuth) {
-		return <Navigate to={"/auth"} state={{ from: location }} />;
+	if (!isAuth) {
+		return <Navigate to={pathNames.auth} state={{ from: location }} />;
 	}
 	return <Outlet />;
 }

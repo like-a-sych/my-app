@@ -24,8 +24,11 @@ export default function Router() {
 				<Route path={pathNames.login} element={<LoginFormLayout />} />
 				<Route path={pathNames.register} element={<LoginFormLayout />} />
 			</Route>
-			<Route element={<ProtectedRoutes authData={authData} />}>
-				<Route path="/" element={<Layout />}>
+			<Route element={<ProtectedRoutes isAuth={authData.isAuth} />}>
+				<Route
+					path="/"
+					element={<Layout handleLogout={authData.handleLogout} />}
+				>
 					<Route path={pathNames.products} element={<Products />} />
 					<Route path={pathNames.users} element={<Users />} />
 					<Route path={pathNames.category} element={<Category />} />
