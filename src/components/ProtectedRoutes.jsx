@@ -1,9 +1,10 @@
-import { useContext } from "react";
-import { Outlet } from "react-router-dom";
-import { MainContext } from "../context";
-import LoginFormLayout from "./Public/LoginFormLayout";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-export default function ProtectedRoutes() {
-	const { isAuth } = useContext(MainContext);
-	return isAuth ? <Outlet /> : <LoginFormLayout />;
+export default function ProtectedRoutes({ authData }) {
+	const location = useLocation();
+	console.log(authData.isAuth);
+	if (!authData.isAuth) {
+		return <Navigate to={"/auth"} state={{ from: location }} />;
+	}
+	return <Outlet />;
 }

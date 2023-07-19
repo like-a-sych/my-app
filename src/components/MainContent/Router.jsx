@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { pathNames } from "../../constants/path";
-
+import { useAuth } from "../../hooks/useAuth";
 import ProtectedRoutes from "../ProtectedRoutes";
 import LoginFormLayout from "../Public/LoginFormLayout";
 import Layout from "../Layout";
@@ -16,14 +16,15 @@ import Seminars from "./TabPages/Seminars";
 import Promocodes from "./TabPages/Promocodes";
 
 export default function Router() {
+	const authData = useAuth();
 	return (
 		<Routes>
 			<Route path={pathNames.auth}>
-				<Route index element={<LoginFormLayout />} />
+				<Route index element={<LoginFormLayout authData={authData} />} />
 				<Route path={pathNames.login} element={<LoginFormLayout />} />
 				<Route path={pathNames.register} element={<LoginFormLayout />} />
 			</Route>
-			<Route element={<ProtectedRoutes />}>
+			<Route element={<ProtectedRoutes authData={authData} />}>
 				<Route path="/" element={<Layout />}>
 					<Route path={pathNames.products} element={<Products />} />
 					<Route path={pathNames.users} element={<Users />} />
