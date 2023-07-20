@@ -56,7 +56,7 @@ function Layout({ handleLogout }) {
 					<Aside />
 					<main className={style.mainInner}>
 						<div className={style.mainInner__body}>
-							<div className={style["mainInner__content"]}>
+							<div className={style.mainInner__content}>
 								<Outlet />
 							</div>
 						</div>

@@ -1,8 +1,16 @@
-import { Route, Routes } from "react-router-dom";
+import {
+	Route,
+	Routes,
+	useLocation,
+	useNavigate,
+	useParams,
+} from "react-router-dom";
 import { pathNames } from "../../constants/path";
 import { useAuth } from "../../hooks/useAuth";
 import ProtectedRoutes from "../ProtectedRoutes";
-import LoginFormLayout from "../Public/LoginFormLayout";
+import FormLayout from "../Public/FormLayout";
+import Login from "../Public/Login";
+import Register from "../Public/Register";
 import Layout from "../Layout";
 import Products from "./TabPages/Products";
 import Users from "./TabPages/Users";
@@ -19,10 +27,12 @@ export default function Router() {
 	const authData = useAuth();
 	return (
 		<Routes>
-			<Route path={pathNames.auth}>
-				<Route index element={<LoginFormLayout authData={authData} />} />
-				<Route path={pathNames.login} element={<LoginFormLayout />} />
-				<Route path={pathNames.register} element={<LoginFormLayout />} />
+			<Route element={<FormLayout />}>
+				<Route path={pathNames.login} element={<Login authData={authData} />} />
+				<Route
+					path={pathNames.register}
+					element={<Register authData={authData} />}
+				/>
 			</Route>
 			<Route element={<ProtectedRoutes isAuth={authData.isAuth} />}>
 				<Route
