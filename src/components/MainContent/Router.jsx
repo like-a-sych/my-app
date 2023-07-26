@@ -1,10 +1,4 @@
-import {
-	Route,
-	Routes,
-	useLocation,
-	useNavigate,
-	useParams,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { pathNames } from "../../constants/path";
 import { useAuth } from "../../hooks/useAuth";
 import ProtectedRoutes from "../ProtectedRoutes";
@@ -12,7 +6,7 @@ import FormLayout from "../Public/FormLayout";
 import Login from "../Public/Login";
 import Register from "../Public/Register";
 import Layout from "../Layout";
-import Products from "./TabPages/Products";
+import Products from "./TabPages/Products/Products";
 import Users from "./TabPages/Users";
 import Category from "./TabPages/Category";
 import Cities from "./TabPages/Cities";
@@ -21,7 +15,7 @@ import Protocols from "./TabPages/Protocols";
 import Orders from "./TabPages/Orders";
 import Banners from "./TabPages/Banners";
 import Seminars from "./TabPages/Seminars";
-import Promocodes from "./TabPages/Promocodes";
+import Promocodes from "./TabPages/Promocodes/Promocodes";
 
 export default function Router() {
 	const authData = useAuth();

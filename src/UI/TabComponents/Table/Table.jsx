@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { MainContext } from "../../../context/index";
+import TableHead from "./TableHead";
 import Cell from "./Cell";
 import style from "./Table.module.scss";
 
@@ -7,6 +8,7 @@ export default function Table({
 	cellArray,
 	checkedItemsArray,
 	setCheckedItemsArray,
+	theadList,
 }) {
 	const isChecked =
 		checkedItemsArray.length && checkedItemsArray.length === cellArray.length;
@@ -38,42 +40,33 @@ export default function Table({
 
 	return (
 		<table className={style["content-sales-table"]}>
-			<thead className={style["content-sales-table__header"]}>
-				<tr>
-					<th>
-						<input
-							checked={isChecked}
-							type="checkbox"
-							id="checkAll"
-							className={style["content-sales-table__checkbox"]}
-							onChange={allClick}
-						/>
-						<label
-							className={style["content-sales-table__label"]}
-							htmlFor="checkAll"
-						></label>
-					</th>
-					<th>Категория</th>
-					<th>Подкатегория</th>
-					<th>Бренд</th>
-					<th>Товары</th>
-					<th>Кешбек</th>
-				</tr>
-			</thead>
+			<TableHead
+				allClick={allClick}
+				isChecked={isChecked}
+				theadList={theadList}
+			/>
+
 			<tbody className={style["content-sales-table__body"]}>
-				{cellArray.map(item => {
-					const isChecked = checkedItemsArray.includes(item.id); //функция для проверки существования id поля в массиве
-					// выводим отсортированный по длине массив со всеми данными в таблицу
-					return (
-						<Cell
-							key={item.id}
-							item={item}
-							setModalState={setModalState}
-							checkboxHandler={checkboxHandler}
-							isChecked={isChecked}
-						/>
-					);
-				})}
+				{cellArray.length ? (
+					cellArray.map(item => {
+						const isChecked = checkedItemsArray.includes(item.id); //функция для проверки существования id поля в массиве
+						// выводим отсортированный по длине массив со всеми данными в таблицу
+
+						return (
+							<Cell
+								key={item.id}
+								item={item}
+								setModalState={setModalState}
+								checkboxHandler={checkboxHandler}
+								isChecked={isChecked}
+							/>
+						);
+					})
+				) : (
+					<tr>
+						<td colSpan={3}>Здесь пока нет товаров</td>
+					</tr>
+				)}
 			</tbody>
 		</table>
 	);

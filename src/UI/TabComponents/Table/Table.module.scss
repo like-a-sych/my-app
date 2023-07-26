@@ -3,20 +3,22 @@
 	text-align: left;
 	width: 100%;
 	max-width: 100%;
+	position: relative;
 	@media (max-width: 1485px) {
 		overflow-x: scroll;
 	}
 	tr {
-		display: grid;
-		grid-template-columns: 48px 262px 209px 201px 204px 84px;
+		// display: grid;
+		// grid-template-columns: repeat(auto-fill, 1fr);
+		// grid-auto-flow: column;
 		cursor: pointer;
 		transition: all 0.4s;
 		&:hover {
 			background-color: #f8f8fae3;
 		}
 		@media (max-width: 1485px) {
-			grid-template-columns: 40px 1fr 1fr 1fr 1fr 80px;
-			justify-content: flex-start;
+			// grid-template-columns: 40px 1fr 1fr 1fr 1fr 80px;
+			// justify-content: flex-start;
 		}
 		th {
 			transition: all 0.4s;
@@ -28,11 +30,16 @@
 			&:not(:first-child) {
 				padding: 8px;
 			}
-			&:nth-child(1) {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+			&:first-child {
+				// display: flex;
+				// align-items: center;
+				// justify-content: center;
+				text-align: center;
 				cursor: pointer;
+				width: 80px;
+			}
+			&:last-child {
+				text-align: center;
 			}
 		}
 		td {
@@ -44,11 +51,14 @@
 			overflow: hidden;
 			text-shadow: none;
 			transition: all 0.4s;
-			&:nth-child(1) {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+			max-width: 0;
+			&:first-child {
+				// display: flex;
+				// align-items: center;
+				// justify-content: center;
+				text-align: center;
 				cursor: pointer;
+				width: 80px;
 			}
 			&:last-child {
 				text-align: center;
@@ -58,19 +68,18 @@
 			}
 		}
 		&._active {
-			& + div {
-				display: none;
-			}
 			td {
-				line-height: 2;
+				background-color: rgba(248, 248, 250, 0.8901960784);
+				line-height: 1.5;
 				text-overflow: unset;
 				white-space: unset;
-				display: flex;
-				align-items: center;
-				min-height: 70px;
-				&:last-child {
-					justify-content: center;
-				}
+				// display: flex;
+				// align-items: center;
+				height: 70px;
+
+				// &:last-child {
+				// 	justify-content: center;
+				// }
 			}
 		}
 	}
@@ -78,6 +87,10 @@
 		border-top: 1px solid #ebecef;
 		border-bottom: 1px solid #ebecef;
 		background: #f8f8fa;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0px;
+		z-index: 50;
 	}
 	&__wrapper {
 		display: flex;
@@ -88,9 +101,7 @@
 	}
 	&__checkbox {
 		display: none;
-		&._active {
-			background-color: rgba(248, 248, 250, 0.8901960784);
-		}
+
 		&:checked {
 			& + label {
 				&::after {

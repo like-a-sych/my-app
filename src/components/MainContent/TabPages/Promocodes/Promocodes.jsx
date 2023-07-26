@@ -1,9 +1,11 @@
-import { useTableBlock } from "../../hooks/useTableBlock";
-import { Pagination, Table, AddItemButton } from "../TabComponents";
-import PopUp from "../PopUp/PopUp";
-import style from "./TableBlock.module.scss";
+import { usePromocodesTableHook } from "./usePromocodesTableHook";
+import { Pagination, AddItemButton, Table } from "../../../../UI/TabComponents";
+import { tableCellsArray } from "../../../../constants/cells";
+import { theadListPromocodes } from "./theadList";
+import PopUp from "../../../../UI/PopUp/PopUp";
+import style from "../TableBlock.module.scss";
 
-export default function TableBlock() {
+export default function Promocodes() {
 	const {
 		setOpenPopup,
 		openPopup,
@@ -15,12 +17,13 @@ export default function TableBlock() {
 		sliceArray,
 		setCheckedItemsArray,
 		setPagination,
-	} = useTableBlock();
+	} = usePromocodesTableHook(tableCellsArray);
 
 	return (
 		<div className={style["table-block"]}>
 			<div className={style["table-block__header"]}>
 				<Pagination
+					data={tableCellsArray}
 					setCellArray={setCellArray}
 					setCheckedItemsArray={setCheckedItemsArray}
 					pagination={pagination}
@@ -34,6 +37,7 @@ export default function TableBlock() {
 					cellArray={cellArray}
 					checkedItemsArray={checkedItemsArray}
 					setCheckedItemsArray={setCheckedItemsArray}
+					theadList={theadListPromocodes}
 				/>
 				{openPopup && (
 					<PopUp

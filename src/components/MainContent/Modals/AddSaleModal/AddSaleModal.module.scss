@@ -6,6 +6,9 @@
 	}
 	&__body {
 		padding: 1em 40px;
+		@media (max-width: 768px) {
+			padding: 1em;
+		}
 	}
 }
 .header-button {

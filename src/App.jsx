@@ -3,10 +3,14 @@ import { BrowserRouter } from "react-router-dom";
 import { MainContext } from "./context";
 
 import Router from "./components/MainContent/Router";
-import Modal from "./UI/Modal/Modal";
+import ModalMainBlock from "./UI/Modal/ModalMainBlock/ModalMainBlock";
 
 function App() {
-	const [modalState, setModalState] = useState(""); //состояние для переиспользуемого модального окна
+	const [modalState, setModalState] = useState({
+		idModal: "",
+		dataCell: {},
+		isOpen: false,
+	}); //состояние для переиспользуемого модального окна
 	return (
 		<MainContext.Provider
 			value={{
@@ -16,7 +20,7 @@ function App() {
 		>
 			<BrowserRouter>
 				<Router />
-				<Modal componentId={modalState} setModalId={setModalState} />
+				<ModalMainBlock modalState={modalState} setModalState={setModalState} />
 			</BrowserRouter>
 		</MainContext.Provider>
 	);

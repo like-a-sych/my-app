@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { tableCellsArray } from "../constants/cells";
 
 export function usePagination({
 	pagination,
@@ -7,14 +6,16 @@ export function usePagination({
 	sliceArray,
 	setCellArray,
 	setCheckedItemsArray,
+	data,
 }) {
-	const lastPage = Math.ceil(tableCellsArray.length / +pagination.limitView); // переменная для вычисления последней странице на основе отображаемого контента на странице
+	const lastPage = Math.ceil(data.length / +pagination.limitView); // переменная для вычисления последней странице на основе отображаемого контента на странице
 
 	function setCountHandler(e) {
-		if (tableCellsArray.length) {
+		if (data.length) {
 			setPagination(prev => ({
 				...prev,
 				limitView: e.target.value,
+				isOpen: true,
 			})); // задаем количество отображаемого контента на странице
 		} else {
 			alert("Нечего выводить");
@@ -35,7 +36,7 @@ export function usePagination({
 		//при перелистывании вперед добавляем единицу к существующей странице, если она  равна 1, то функция не срабатывает и прибавляем к лимиту отображаемого контента, заданное количество отображаемого контента
 		if (
 			pagination.currentPage <=
-			Math.floor(Number(tableCellsArray.length) / Number(pagination.limitView))
+			Math.floor(Number(data.length) / Number(pagination.limitView))
 		) {
 			setPagination(prev => ({
 				...prev,
@@ -45,9 +46,28 @@ export function usePagination({
 	}
 
 	useEffect(() => {
-		setCellArray(sliceArray(tableCellsArray)); //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице
+		setCellArray(sliceArray(data)); //триггерим перерисовку массива, если изменяется страница или лимит отображения контента на странице
 		return () => setCheckedItemsArray([]);
 	}, [pagination.currentPage, pagination.limitView]);
+
+	useEffect(() => {
+		// перерисовываем пагинацию, если меняется лимит отображения контента на странице и если пагинация превышает лимит отображаемых страниц, то сбрасываем до 1
+		if (
+			pagination.currentPage !== Math.ceil(data.length / pagination.limitView)
+		) {
+			setPagination(prev => ({
+				...prev,
+				currentPage: 1,
+				limitView: prev.limitView,
+			}));
+		} else {
+			setPagination(prev => ({
+				...prev,
+				limitView: prev.limitView,
+			}));
+		}
+		setCellArray(sliceArray(data));
+	}, [pagination.limitView]);
 
 	return {
 		setCountHandler,

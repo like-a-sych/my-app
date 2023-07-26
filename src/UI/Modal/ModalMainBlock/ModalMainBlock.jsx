@@ -1,14 +1,17 @@
 import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { ComponentsList } from "../../constants/modalList";
+import { ComponentsList } from "../../../constants/modalList";
 
-import style from "./Modal.module.scss";
+import style from "./ModalMainBlock.module.scss";
 
-export default function Modal({ componentId, setModalId }) {
+export default function ModalMainBlock({ modalState, setModalState }) {
 	const closeModal = useCallback(() => {
 		//функция для закрытия модального окна путем смены состояния и обнулении id компонента
-		setModalId("");
-	}, [setModalId]);
+		setModalState(prev => ({
+			...prev,
+			idModal: "",
+		}));
+	}, [setModalState]);
 
 	useEffect(() => {
 		// слушатель для закрытия окна по esc
@@ -21,7 +24,7 @@ export default function Modal({ componentId, setModalId }) {
 		return () => document.removeEventListener("keyup", closeKey);
 	}, [closeModal]);
 
-	if (componentId === "") {
+	if (modalState.idModal === "") {
 		//проверка отрисовки модалки в DOM
 		return null;
 	}
@@ -59,7 +62,9 @@ export default function Modal({ componentId, setModalId }) {
 						</defs>
 					</svg>
 				</button>
-				<div className={style.modal__body}>{ComponentsList[componentId]}</div>
+				<div className={style.modal__body}>
+					{ComponentsList[modalState.idModal]}
+				</div>
 			</div>
 		</div>,
 		document.getElementById("modal")

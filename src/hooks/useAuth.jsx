@@ -7,7 +7,10 @@ const loginUrl = "https://myshop-api.onrender.com/api/user/login"; //адрес�
 const registrationUrl = "https://myshop-api.onrender.com/api/user/registration";
 
 export function useAuth() {
-	const [isAuth, setAuth] = useState(localStorage.getItem("isAuth")); //состояние для проверки залогинен пользователь или нет, в состоянии проверяем ставил ли пользователь галочку на "помни меня"
+	//const [isAuth, setAuth] = useState(localStorage.getItem("isAuth")); //состояние для проверки залогинен пользователь или нет, в состоянии проверяем ставил ли пользователь галочку на "помни меня"
+
+	const [isAuth, setAuth] = useState(true); //! тестовая авторизация
+
 	const [rememberMe, setRemember] = useState(false); //*состояние для галочки "помни меня"
 	const [errorMessage, setErrorMessage] = useState(""); //стейт для вывода ошибок при регистрации
 	const [user, setUser] = useState(null); //тут хранятся данные после авторизации, которые получены от сервера
@@ -19,6 +22,7 @@ export function useAuth() {
 	}, [navigate]);
 
 	async function handlerSubmitForm(event) {
+		console.log("asd");
 		//*обработчик для кнопки войти с учетными данными
 		event.preventDefault();
 		try {

@@ -9,6 +9,7 @@ export default function Pagination({
 	sliceArray,
 	setCheckedItemsArray,
 	setCellArray,
+	data,
 }) {
 	const { setCountHandler, lastPage, prevPageHandler, nextPageHandler } =
 		usePagination({
@@ -17,6 +18,7 @@ export default function Pagination({
 			sliceArray,
 			setCellArray,
 			setCheckedItemsArray,
+			data,
 		});
 	return (
 		<div className={style["pagination"]}>

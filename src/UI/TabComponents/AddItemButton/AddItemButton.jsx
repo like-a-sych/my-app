@@ -6,6 +6,7 @@ export default function AddItem() {
 	const { setModalState } = useContext(MainContext);
 
 	function addButton() {
+		//TODO: сделать передачу любого id модалки
 		setModalState("addSale");
 	}
 	return (
