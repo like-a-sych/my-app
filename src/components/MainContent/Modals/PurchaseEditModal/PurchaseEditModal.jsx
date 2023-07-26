@@ -8,7 +8,6 @@ import ImageBlock from "./ImageBlock/ImageBlock";
 import InputList from "./InputList/InputList";
 import InputContainer from "./InputContainer/InputContainer";
 import InputDeleteBlock from "./InputDeleteBlock/InputDeleteBlock";
-import AddButton from "./AddButton/AddButton";
 import HelpSpan from "./HelpSpan/HelpSpan";
 import TagsBlock from "./TagsBlock/TagsBlock";
 import TagsItem from "./TagsBlock/TagsItem";
@@ -19,8 +18,6 @@ import style from "./PurchaseEditModal.module.scss";
 export default function PurchaseEditModal() {
 	const { modalState } = useContext(MainContext);
 	const data = modalState.data;
-
-	console.log(data);
 
 	return (
 		<form className={style["edit-sales"]}>
@@ -88,8 +85,10 @@ export default function PurchaseEditModal() {
 					</div>
 				</div>
 				<div className={style["edit-sales__item"]}>
-					<div className={style["title"]}>{labelFields.volume}</div>
-					<InputContainer>
+					<InputContainer
+						title={labelFields.volume}
+						textButton={"+ Добавить объем"}
+					>
 						<InputDeleteBlock
 							value1={data.volume}
 							value2={data.codeFrom1C}
@@ -103,11 +102,13 @@ export default function PurchaseEditModal() {
 							placeholder2="Артикул"
 						></InputDeleteBlock>
 					</InputContainer>
-					<AddButton text="+ Добавить объем"></AddButton>
 				</div>
 				<div className={style["edit-sales__item"]}>
-					<div className={style["title"]}>{labelFields.features}</div>
-					<InputContainer>
+					<InputContainer
+						title={labelFields.features}
+						textButton={"+ Добавить характеристику"}
+						helpText={"Максимум 15 характеристик"}
+					>
 						<InputDeleteBlock
 							value1="Страна изготовитель"
 							value2="Франция"
@@ -121,10 +122,6 @@ export default function PurchaseEditModal() {
 							placeholder2="Значение характеристики"
 						></InputDeleteBlock>
 					</InputContainer>
-					<HelpSpan>
-						<>Максимум 15 характеристик</>
-					</HelpSpan>
-					<AddButton text="+ Добавить характеристику" />
 				</div>
 				<div className={style["edit-sales__item"]}>
 					<div className={style["tags"]}>
