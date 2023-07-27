@@ -1,4 +1,4 @@
-export const UsersMockData = [
+export const usersMockData = [
 	{
 		id: "",
 		email: "svetlana.tumalaeva@mail.ru",
@@ -9003,9 +9003,9 @@ export const UsersMockData = [
 ];
 
 (function () {
-	if (UsersMockData.length) {
-		for (let i = 0; i < UsersMockData.length; i++) {
-			UsersMockData[i].id = `row-${i + 1}`;
+	if (usersMockData.length) {
+		for (let i = 0; i < usersMockData.length; i++) {
+			usersMockData[i].id = `row-${i + 1}`;
 		}
 	}
 })();

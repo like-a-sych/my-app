@@ -8,7 +8,7 @@ import Register from "../Public/Register";
 import Layout from "../Layout";
 import Products from "./TabPages/Products/Products";
 import Users from "./TabPages/Users/Users";
-import Category from "./TabPages/Category";
+import Category from "./TabPages/Category/Category";
 import Cities from "./TabPages/Cities";
 import Brands from "./TabPages/Brands";
 import Protocols from "./TabPages/Protocols";

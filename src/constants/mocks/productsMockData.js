@@ -1,4 +1,4 @@
-export const ProductsMockData = [
+export const productsMockData = [
 	{
 		id: "99131dda-9d8f-49df-b1a5-2ea099526124",
 		name: 'Anti-age концентрат "Сыворотка "Супер Соя", 30 мл',

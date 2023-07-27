@@ -1,4 +1,4 @@
-import { ProductsMockData } from "../../../../constants/mocks/ProductsMockData";
+import { productsMockData } from "../../../../constants/mocks/productsMockData";
 import LayoutTable from "../LayoutTable";
 
 export default function Products() {
@@ -16,7 +16,7 @@ export default function Products() {
 
 	return (
 		<LayoutTable
-			data={ProductsMockData}
+			data={productsMockData}
 			columns={columns}
 			modalId={"purchaseEdit"}
 			errorText={"Здесь пока нет товаров"}

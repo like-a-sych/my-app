@@ -1,4 +1,4 @@
-import { UsersMockData } from "../../../../constants/mocks/UsersMockData";
+import { usersMockData } from "../../../../constants/mocks/usersMockData";
 import LayoutTable from "../LayoutTable";
 
 export default function Users() {
@@ -22,7 +22,7 @@ export default function Users() {
 	return (
 		<LayoutTable
 			columns={columns}
-			data={UsersMockData}
+			data={usersMockData}
 			modalId=""
 			errorText="Здесь пока нет пользователей"
 		/>
