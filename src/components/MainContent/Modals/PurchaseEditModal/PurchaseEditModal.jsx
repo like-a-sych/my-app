@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { MainContext } from "../../../../context";
 import { labelFields } from "./labelFields";
+import {
+	InputContainer,
+	InputDeleteBlock,
+	ImageBlock,
+	HelpSpan,
+	TagsBlock,
+	TagsItem,
+	TextareaBlock,
+	InputList,
+} from "./components/index";
 import ModalButton from "../../../../UI/Modal/Button/ModalButton";
 import HeaderModal from "../../../../UI/Modal/HeaderModal/HeaderModal";
 import LabelInput from "../../../../UI/Modal/LabelInput/LabelInput";
-import ImageBlock from "./ImageBlock/ImageBlock";
-import InputList from "./InputList/InputList";
-import InputContainer from "./InputContainer/InputContainer";
-import InputDeleteBlock from "./InputDeleteBlock/InputDeleteBlock";
-import HelpSpan from "./HelpSpan/HelpSpan";
-import TagsBlock from "./TagsBlock/TagsBlock";
-import TagsItem from "./TagsBlock/TagsItem";
-import TextareaBlock from "./TextareaBlock/TextareaBlock";
 
 import style from "./PurchaseEditModal.module.scss";
 

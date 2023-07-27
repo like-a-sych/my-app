@@ -1,5 +1,5 @@
 import { Children } from "react";
-import style from "../PurchaseEditModal.module.scss";
+import style from "../../PurchaseEditModal.module.scss";
 
 export default function HelpSpan({ children }) {
 	return (

@@ -1,7 +1,7 @@
 import { Children } from "react";
-import style from "./InputContainer.module.scss";
 import AddButton from "../AddButton/AddButton";
 import HelpSpan from "../HelpSpan/HelpSpan";
+import style from "./InputContainer.module.scss";
 
 export default function InputContainer({
 	children,

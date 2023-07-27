@@ -2,14 +2,21 @@ import { memo } from "react";
 
 import style from "./Table.module.scss";
 
-function Cell({ item, setModalState, checkboxHandler, isChecked }) {
-	const tdItems = Object.entries(item);
+function RowTable({
+	item,
+	setModalState,
+	checkboxHandler,
+	isChecked,
+	modalId,
+	columns,
+}) {
+	const rowData = columns.map(element => element.selector(item));
 
 	function clickBtn() {
 		setModalState({
 			isOpen: true,
 			data: item,
-			idModal: "purchaseEdit",
+			idModal: modalId,
 		});
 	}
 
@@ -39,16 +46,15 @@ function Cell({ item, setModalState, checkboxHandler, isChecked }) {
 					></label>
 				</div>
 			</td>
-			{tdItems.map((el, index) => {
-				if (el[0] === "nameFrom1C" || el[0] === "codeFrom1C") {
-					return <td key={index}>{el[1]}</td>;
-				}
-				return null;
+
+			{rowData.map((el, index) => {
+				//TODO index заменить на нормальный ключ
+				return el ? <td key={index}>{el}</td> : null;
 			})}
 		</tr>
 	);
 }
 
-export default memo(Cell, (prevProps, nextProps) => {
+export default memo(RowTable, (prevProps, nextProps) => {
 	return prevProps.isChecked === nextProps.isChecked;
 });

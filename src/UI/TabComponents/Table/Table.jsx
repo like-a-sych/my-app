@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { MainContext } from "../../../context/index";
 import TableHead from "./TableHead";
-import Cell from "./Cell";
+import RowTable from "./RowTable";
 import style from "./Table.module.scss";
 
 export default function Table({
 	cellArray,
 	checkedItemsArray,
 	setCheckedItemsArray,
-	theadList,
+	columns,
+	modalId,
+	errorText,
 }) {
 	const isChecked =
 		checkedItemsArray.length && checkedItemsArray.length === cellArray.length;
@@ -43,7 +45,7 @@ export default function Table({
 			<TableHead
 				allClick={allClick}
 				isChecked={isChecked}
-				theadList={theadList}
+				theadList={columns.map(i => i.name)}
 			/>
 
 			<tbody className={style["content-sales-table__body"]}>
@@ -53,18 +55,20 @@ export default function Table({
 						// выводим отсортированный по длине массив со всеми данными в таблицу
 
 						return (
-							<Cell
+							<RowTable
 								key={item.id}
 								item={item}
+								columns={columns}
 								setModalState={setModalState}
 								checkboxHandler={checkboxHandler}
 								isChecked={isChecked}
+								modalId={modalId}
 							/>
 						);
 					})
 				) : (
 					<tr>
-						<td colSpan={3}>Здесь пока нет товаров</td>
+						<td colSpan={3}>{errorText}</td>
 					</tr>
 				)}
 			</tbody>

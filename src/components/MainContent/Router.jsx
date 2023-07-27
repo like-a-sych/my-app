@@ -7,7 +7,7 @@ import Login from "../Public/Login";
 import Register from "../Public/Register";
 import Layout from "../Layout";
 import Products from "./TabPages/Products/Products";
-import Users from "./TabPages/Users";
+import Users from "./TabPages/Users/Users";
 import Category from "./TabPages/Category";
 import Cities from "./TabPages/Cities";
 import Brands from "./TabPages/Brands";
@@ -42,7 +42,7 @@ export default function Router() {
 					<Route path={pathNames.orders} element={<Orders />} />
 					<Route path={pathNames.banners} element={<Banners />} />
 					<Route path={pathNames.seminars} element={<Seminars />} />
-					<Route path={pathNames.promocodes} element={<Promocodes />} />
+					{/* <Route path={pathNames.promocodes} element={<Promocodes />} /> */}
 					<Route path="/*" element={<div>404</div>} />
 				</Route>
 			</Route>

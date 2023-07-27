@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { visibleCells } from "../../../../constants/visibleCells";
+import { visibleCells } from "../constants/visibleCells";
 
-export function usePromocodesTableHook(data) {
+export function useTable(data) {
 	const [pagination, setPagination] = useState({
 		//состояние для пагинации на странице
 		currentPage: 1,

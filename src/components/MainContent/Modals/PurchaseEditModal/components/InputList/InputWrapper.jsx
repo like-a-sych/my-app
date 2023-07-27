@@ -1,13 +1,6 @@
 import { Fragment } from "react";
-import LabelInput from "../../../../../UI/Modal/LabelInput/LabelInput";
-import InputList from "./InputList";
-
-// type: string
-// value: string
-// label: string
-// disable: boolean
-// placeholder: string
-// id: string
+import LabelInput from "../../../../../../UI/Modal/LabelInput/LabelInput";
+import InputList from "../InputList/InputList";
 
 export default function InputWrapper({ items }) {
 	console.log(items);

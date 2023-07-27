@@ -1,6 +1,6 @@
 import HelpSpan from "../HelpSpan/HelpSpan";
 import style from "./ImageBlock.module.scss";
-import coreStyle from "../PurchaseEditModal.module.scss";
+import coreStyle from "../../PurchaseEditModal.module.scss";
 
 export default function ImageBlock({ data, labelFields }) {
 	return (
