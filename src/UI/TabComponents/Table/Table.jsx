@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { MainContext } from "../../../context/index";
-import TableHead from "./TableHead";
-import RowTable from "./RowTable";
+import { MainContext } from "../../../context";
+import TableHead from "./components/TableHead";
+import RowTable from "./components/RowTable";
+
 import style from "./Table.module.scss";
 
 export default function Table({
@@ -9,10 +10,10 @@ export default function Table({
 	checkedItemsArray,
 	setCheckedItemsArray,
 	columns,
-	modalId,
-	errorText,
+	idModal,
+	hasCheckbox,
 }) {
-	const isChecked =
+	const isAllChecked =
 		checkedItemsArray.length && checkedItemsArray.length === cellArray.length;
 
 	const { setModalState } = useContext(MainContext);
@@ -43,34 +44,30 @@ export default function Table({
 	return (
 		<table className={style["content-sales-table"]}>
 			<TableHead
+				hasCheckbox={hasCheckbox}
 				allClick={allClick}
-				isChecked={isChecked}
+				isChecked={isAllChecked}
 				theadList={columns.map(i => i.name)}
 			/>
 
 			<tbody className={style["content-sales-table__body"]}>
-				{cellArray.length ? (
-					cellArray.map(item => {
-						const isChecked = checkedItemsArray.includes(item.id); //функция для проверки существования id поля в массиве
-						// выводим отсортированный по длине массив со всеми данными в таблицу
+				{cellArray.map(item => {
+					const isChecked = checkedItemsArray.includes(item.id); //функция для проверки существования id поля в массиве
+					// выводим отсортированный по длине массив со всеми данными в таблицу
 
-						return (
-							<RowTable
-								key={item.id}
-								item={item}
-								columns={columns}
-								setModalState={setModalState}
-								checkboxHandler={checkboxHandler}
-								isChecked={isChecked}
-								modalId={modalId}
-							/>
-						);
-					})
-				) : (
-					<tr>
-						<td colSpan={3}>{errorText}</td>
-					</tr>
-				)}
+					return (
+						<RowTable
+							hasCheckbox={hasCheckbox}
+							key={item.id}
+							item={item}
+							columns={columns}
+							setModalState={setModalState}
+							checkboxHandler={checkboxHandler}
+							isChecked={isChecked}
+							idModal={idModal}
+						/>
+					);
+				})}
 			</tbody>
 		</table>
 	);

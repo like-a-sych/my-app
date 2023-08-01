@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { visibleCells } from "../constants/visibleCells";
 
 export function useTable(data) {
@@ -11,12 +11,19 @@ export function useTable(data) {
 	const [checkedItemsArray, setCheckedItemsArray] = useState([]);
 	const [openPopup, setOpenPopup] = useState(false); // дефолтное состояние popup
 
-	function sliceArray(table) {
-		// передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
-		return table.slice(
-			Number((pagination.currentPage - 1) * pagination.limitView),
-			Number(pagination.limitView) * Number(pagination.currentPage)
-		);
+	const sliceArray = useCallback(
+		table => {
+			// передаем массив и режем его (начальная страница - 1  и лимит отображения контента страницы)
+			return table.slice(
+				Number((pagination.currentPage - 1) * pagination.limitView),
+				Number(pagination.limitView) * Number(pagination.currentPage)
+			);
+		},
+		[pagination.currentPage, pagination.limitView]
+	);
+
+	function PopUpToggle() {
+		setOpenPopup(prev => !prev);
 	}
 
 	function deleteCellTable() {
@@ -27,7 +34,7 @@ export function useTable(data) {
 				i--;
 			}
 		}
-		setOpenPopup(false);
+		PopUpToggle();
 		setCheckedItemsArray([]);
 		setCellArray(sliceArray(data));
 	}
@@ -44,13 +51,13 @@ export function useTable(data) {
 	return {
 		cellArray,
 		setCellArray,
-		deleteCellTable,
 		pagination,
-		openPopup,
-		sliceArray,
-		setOpenPopup,
-		checkedItemsArray,
-		setCheckedItemsArray,
 		setPagination,
+		setCheckedItemsArray,
+		openPopup,
+		PopUpToggle,
+		deleteCellTable,
+		sliceArray,
+		checkedItemsArray,
 	};
 }

@@ -1,11 +1,19 @@
-import PopUp from "../../../UI/PopUp/PopUp";
 import { Pagination, Table } from "../../../UI/TabComponents";
 import { useTable } from "../../../hooks/useTable";
+
+import PopUp from "../Modals/PopUp/PopUp";
+
 import style from "./LayoutTable.module.scss";
 
-export default function LayoutTable({ data, modalId, columns }) {
+export default function LayoutTable({
+	data,
+	idModal,
+	columns,
+	hasCheckbox,
+	errorText,
+}) {
 	const {
-		setOpenPopup,
+		PopUpToggle,
 		openPopup,
 		pagination,
 		setCellArray,
@@ -19,35 +27,40 @@ export default function LayoutTable({ data, modalId, columns }) {
 
 	return (
 		<div className={style["table-block"]}>
-			<div className={style["table-block__header"]}>
-				{data !== undefined && (
-					<Pagination
-						data={data}
-						setCellArray={setCellArray}
-						setCheckedItemsArray={setCheckedItemsArray}
-						pagination={pagination}
-						setPagination={setPagination}
-						sliceArray={sliceArray}
-					/>
-				)}
-			</div>
-			<div className={style["table-block__content"]}>
-				<Table
-					cellArray={cellArray}
-					checkedItemsArray={checkedItemsArray}
-					setCheckedItemsArray={setCheckedItemsArray}
-					columns={columns}
-					modalId={modalId}
-				/>
-				{openPopup && (
-					<PopUp
-						openPopup={openPopup}
-						setOpenPopup={setOpenPopup}
-						checkedItemsArray={checkedItemsArray}
-						deleteCellTable={deleteCellTable}
-					></PopUp>
-				)}
-			</div>
+			{data ? (
+				<>
+					<div className={style["table-block__header"]}>
+						<Pagination
+							data={data}
+							setCellArray={setCellArray}
+							setCheckedItemsArray={setCheckedItemsArray}
+							pagination={pagination}
+							setPagination={setPagination}
+							sliceArray={sliceArray}
+						/>
+					</div>
+					<div className={style["table-block__content"]}>
+						<Table
+							hasCheckbox={hasCheckbox}
+							cellArray={cellArray}
+							checkedItemsArray={checkedItemsArray}
+							setCheckedItemsArray={setCheckedItemsArray}
+							columns={columns}
+							idModal={idModal}
+						/>
+						{openPopup && (
+							<PopUp
+								openPopup={openPopup}
+								PopUpToggle={PopUpToggle}
+								checkedItemsArray={checkedItemsArray}
+								deleteCellTable={deleteCellTable}
+							></PopUp>
+						)}
+					</div>
+				</>
+			) : (
+				<div className={style["errorText"]}>{errorText}</div>
+			)}
 		</div>
 	);
 }

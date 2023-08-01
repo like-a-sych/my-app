@@ -7,15 +7,16 @@ export default function LabelInput({
 	label,
 	disable,
 	placeholder,
+	dropdown,
 }) {
+	let labelClass = style.label;
+
+	if (dropdown) {
+		labelClass = style["label-before"];
+	}
 	return (
-		<>
-			<label
-				htmlFor={id}
-				className={
-					disable !== undefined ? style["label"] : style["label-before"]
-				}
-			>
+		<div className={style["list-block__list-item"]}>
+			<label htmlFor={id} className={labelClass}>
 				{label}
 
 				<input
@@ -28,6 +29,6 @@ export default function LabelInput({
 					onChange={() => {}} // TODO: fix mock callback
 				></input>
 			</label>
-		</>
+		</div>
 	);
 }

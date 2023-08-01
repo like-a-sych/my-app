@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MainContext } from "../../../context";
 import style from "./AddItemButton.module.scss";
 
-export default function AddItem() {
+export default function AddItem({ text }) {
 	const { setModalState } = useContext(MainContext);
 
 	function addButton() {
@@ -10,14 +10,12 @@ export default function AddItem() {
 		setModalState("addSale");
 	}
 	return (
-		<div className={style["add-item"]}>
-			<button
-				onClick={addButton}
-				className={style["add-item__button"]}
-				type="button"
-			>
-				Добавить акцию
-			</button>
-		</div>
+		<button
+			onClick={addButton}
+			className={style["add-item__button"]}
+			type="button"
+		>
+			{text}
+		</button>
 	);
 }

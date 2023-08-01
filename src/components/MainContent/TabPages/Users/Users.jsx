@@ -1,6 +1,8 @@
 import { usersMockData } from "../../../../constants/mocks/usersMockData";
 import LayoutTable from "../LayoutTable";
 
+import style from "./Users.module.scss";
+
 export default function Users() {
 	//конфиг для отображения полей в таблице. В объект помещаем name для thead,а в selector функцию в которую передается массив объектов строки и возвращает value указанных ключей
 	const columns = [
@@ -20,11 +22,15 @@ export default function Users() {
 		},
 	];
 	return (
-		<LayoutTable
-			columns={columns}
-			data={usersMockData}
-			modalId=""
-			errorText="Здесь пока нет пользователей"
-		/>
+		<div className={style["users-page"]}>
+			<LayoutTable
+				hasCheckbox={false}
+				columns={columns}
+				data={usersMockData}
+				idModal=""
+				errorText="Здесь пока нет пользователей"
+				pageClass="usersPage"
+			/>
+		</div>
 	);
 }

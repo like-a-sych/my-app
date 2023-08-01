@@ -8,6 +8,7 @@ export function usePagination({
 	setCheckedItemsArray,
 	data,
 }) {
+	console.log(pagination);
 	const lastPage = Math.ceil(data.length / +pagination.limitView); // переменная для вычисления последней странице на основе отображаемого контента на странице
 
 	function setCountHandler(e) {

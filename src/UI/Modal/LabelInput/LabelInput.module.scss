@@ -1,21 +1,21 @@
-.input-wrapper-before {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 20px;
-		height: 30px;
-		width: 30px;
-		margin: auto;
-		cursor: pointer;
-		background: no-repeat 98% center/16px url("../../../UI/img/arrow.svg");
-	}
-}
+// .input-wrapper-before {
+// 	position: relative;
+// 	display: flex;
+// 	flex-direction: column;
+// 	width: 100%;
+// 	&::before {
+// 		content: "";
+// 		position: absolute;
+// 		top: 0;
+// 		bottom: 0;
+// 		right: 20px;
+// 		height: 30px;
+// 		width: 30px;
+// 		margin: auto;
+// 		cursor: pointer;
+// 		background: no-repeat 98% center/16px url("../../../UI/img/arrow.svg");
+// 	}
+// }
 .input-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -25,7 +25,7 @@
 	border-radius: 8px;
 	border: 1px solid #d0d3da;
 	background: #fff;
-	height: 30px;
+	height: 54px;
 	padding: 10px;
 	padding-right: 30px;
 	font-size: 14px;
@@ -57,6 +57,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+
 	&::before {
 		content: "";
 		position: absolute;

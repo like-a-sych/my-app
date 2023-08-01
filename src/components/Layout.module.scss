@@ -41,6 +41,7 @@
 	}
 }
 .mainInner {
+	padding: 8px;
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
@@ -59,7 +60,7 @@
 		padding: 24px;
 	}
 	&__content {
-		height: auto;
+		height: 100%;
 	}
 }
 

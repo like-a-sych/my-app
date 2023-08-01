@@ -20,6 +20,7 @@ export default function Pagination({
 			setCheckedItemsArray,
 			data,
 		});
+	console.log(pagination);
 	return (
 		<div className={style["pagination"]}>
 			<div className={style["pagination__wrapper"]}>

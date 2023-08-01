@@ -1,0 +1,10 @@
+.users-page {
+	tr {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	th:last-child,
+	td:last-child {
+		text-align: unset;
+	}
+}

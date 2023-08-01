@@ -16,10 +16,11 @@ export default function Products() {
 
 	return (
 		<LayoutTable
+			hasCheckbox={true}
 			data={productsMockData}
 			columns={columns}
-			modalId={"purchaseEdit"}
-			errorText={"Здесь пока нет товаров"}
+			idModal={"purchaseEdit"}
+			errorText="Здесь пока нет товаров"
 		/>
 	);
 }
