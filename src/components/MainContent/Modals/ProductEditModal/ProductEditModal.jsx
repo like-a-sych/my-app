@@ -12,9 +12,9 @@ import {
 	InputList,
 } from "./components/index";
 
-import ModalButton from "../../../../UI/Modal/Button/ModalButton";
-import HeaderModal from "../../../../UI/Modal/HeaderModal/HeaderModal";
-import LabelInput from "../../../../UI/Modal/LabelInput/LabelInput";
+import ModalButton from "../../../UI/Modal/Button/ModalButton";
+import HeaderModal from "../../../UI/Modal/HeaderModal/HeaderModal";
+import LabelInput from "../../../UI/Modal/LabelInput/LabelInput";
 
 import style from "./ProductEditModal.module.scss";
 

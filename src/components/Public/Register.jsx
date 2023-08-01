@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pathNames } from "../../constants/path";
-import Input from "../../UI/Form/Input/Input";
-import Button from "../../UI/Form/Button/Button";
+import Input from "../UI/Form/Input/Input";
+import Button from "../UI/Form/Button/Button";
 import style from "./FormLayout.module.scss";
 
 export default function Register({ authData }) {

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import LabelInput from "../../../../../../UI/Modal/LabelInput/LabelInput";
+import LabelInput from "../../../../../UI/Modal/LabelInput/LabelInput";
 import InputList from "./InputList";
 
 export default function InputWrapper({ items }) {

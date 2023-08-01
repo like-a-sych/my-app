@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { ComponentsList } from "../../../constants/modalList";
+import { ComponentsList } from "../../../../constants/modalList";
+
 import ModalContainer from "../ModalContainer/ModalContainer";
 
 export default function ModalMainBlock({ modalState, setModalState }) {

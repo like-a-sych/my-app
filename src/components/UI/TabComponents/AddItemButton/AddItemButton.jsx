@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MainContext } from "../../../context";
+import { MainContext } from "../../../../context";
 import style from "./AddItemButton.module.scss";
 
 export default function AddItem({ text }) {

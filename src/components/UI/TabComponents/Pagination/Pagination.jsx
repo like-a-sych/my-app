@@ -1,5 +1,5 @@
-import { usePagination } from "../../../hooks/usePagination";
-import { visibleCells } from "../../../constants/visibleCells";
+import { usePagination } from "../../../../hooks/usePagination";
+import { visibleCells } from "../../../../constants/visibleCells";
 import SelectOptions from "./SelectOptions";
 import style from "./Pagination.module.scss";
 

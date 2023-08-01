@@ -15,7 +15,7 @@ import Protocols from "./TabPages/Protocols";
 import Orders from "./TabPages/Orders";
 import Banners from "./TabPages/Banners";
 import Seminars from "./TabPages/Seminars";
-import Promocodes from "./TabPages/Promocodes/Promocodes";
+// import Promocodes from "./TabPages/Promocodes/Promocodes";
 
 export default function Router() {
 	const authData = useAuth();

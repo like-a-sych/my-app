@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { MainContext } from "./context";
 
 import Router from "./components/MainContent/Router";
-import ModalMainBlock from "./UI/Modal/ModalMainBlock/ModalMainBlock";
+import ModalMainBlock from "./components/UI/Modal/ModalMainBlock/ModalMainBlock";
 
 function App() {
 	const [modalState, setModalState] = useState({

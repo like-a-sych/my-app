@@ -7,7 +7,7 @@ import InnerContentTable from "./components/InnerContentTable/InnerContentTable"
 
 import "./Category.scss";
 
-export default function Categor() {
+export default function Category() {
 	const [position, setPosition] = useState(null);
 	const [subData, setSubData] = useState([]);
 

@@ -1,4 +1,4 @@
-import { Pagination, Table } from "../../../UI/TabComponents";
+import { Pagination, Table } from "../../UI/TabComponents";
 import { useTable } from "../../../hooks/useTable";
 
 import PopUp from "../Modals/PopUp/PopUp";

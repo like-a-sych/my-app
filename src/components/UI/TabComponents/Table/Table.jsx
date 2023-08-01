@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MainContext } from "../../../context";
+import { MainContext } from "../../../../context";
 import TableHead from "./components/TableHead";
 import RowTable from "./components/RowTable";
 
